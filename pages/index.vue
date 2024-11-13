@@ -4,6 +4,7 @@
     <CategoryCarousel />
     <DiscountBanner />
     <AppDownloadBanner />
+    <NewsSection />
 </template>
 
 <script setup>

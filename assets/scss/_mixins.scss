@@ -1,0 +1,6 @@
+@mixin title($font-size) {
+    font-family: "Futura ND for Nike 365", Arial, sans-serif;
+    font-size: $font-size;        
+    font-weight: 900;
+    text-transform: uppercase;
+}
