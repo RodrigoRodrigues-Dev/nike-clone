@@ -6,6 +6,7 @@
     <AppDownloadBanner />
     <NewsSection />
     <ReleasesBanner />
+    <ClassicsSlider />
 </template>
 
 <script setup>
