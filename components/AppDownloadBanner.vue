@@ -3,8 +3,8 @@
         <div class="appDownload">
             <picture>
                 <source media="(max-width: 1024px)"
-                    srcset="https://www.nike.qa/dw/image/v2/BDVB_PRD/on/demandware.static/-/Library-Sites-NikeSharedLibrary/default/dw21613840/2023/04/Homepage/app%20download%20tout%20mob%20en.png" />
-                <img src="https://www.nike.qa/dw/image/v2/BDVB_PRD/on/demandware.static/-/Library-Sites-NikeSharedLibrary/default/dw4c1ebd70/2023/04/Homepage/app%20download%20tout%20desk%20en.png"
+                    srcset="https://nike-vibe-shop-images.vercel.app/banners/App/app%20download%20tout%20mob.png" />
+                <img src="https://nike-vibe-shop-images.vercel.app/banners/App/app%20download%20tout%20desk.png"
                     alt="Download do App" />
             </picture>
         </div>

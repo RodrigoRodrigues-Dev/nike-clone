@@ -27,12 +27,12 @@
 const currentIndex = ref(0);
 const slides = ref([
     {
-        image: "https://nike-inspired-site-images.vercel.app/icons/icon_release_shoes.png",
+        image: "https://nike-vibe-shop-images.vercel.app/icons/icon_release_shoes.png",
         title: "TÊNIS DE CORRIDA",
         description: "Encontre o seu tênis ideal."
     },
     {
-        image: "https://nike-inspired-site-images.vercel.app/icons/gift_card.png",
+        image: "https://nike-vibe-shop-images.vercel.app/icons/gift_card.png",
         title: "CARTÃO PRESENTE",
         description: "para presentes de última hora."
     }

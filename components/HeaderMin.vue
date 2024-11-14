@@ -1,7 +1,7 @@
 <template>
     <header class="header-min">
         <RouterLink to="/">
-            <img class="header-min__logo" src="https://nike-inspired-site-images.vercel.app/nike-logo.png" alt="Nike Logo">
+            <img class="header-min__logo" src="https://nike-vibe-shop-images.vercel.app/nike-logo.png" alt="Nike Logo">
         </RouterLink>
     </header>
 </template>

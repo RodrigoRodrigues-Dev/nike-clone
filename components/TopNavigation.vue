@@ -2,8 +2,8 @@
     <div class="top-navigation">
         <div class="container">
             <div class="top-navigation__logo">
-                <img src="https://nike-inspired-site-images.vercel.app/icons/jordan.svg" alt="logo Air Jordan">
-                <img src="https://nike-inspired-site-images.vercel.app/icons/snkrs.svg" alt="logo SNKRS">
+                <img src="https://nike-vibe-shop-images.vercel.app/icons/jordan.svg" alt="logo Air Jordan">
+                <img src="https://nike-vibe-shop-images.vercel.app/icons/snkrs.svg" alt="logo SNKRS">
             </div>
             <div class="top-navigation__menu">
                 <div class="top-navigation__menu__item">Nike Journal</div>

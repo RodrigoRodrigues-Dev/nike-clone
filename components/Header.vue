@@ -2,7 +2,7 @@
     <header class="header">
         <div class="header__container">
             <RouterLink to="/">
-                <img class="header__logo" src="https://nike-inspired-site-images.vercel.app/nike-logo.png" alt="Logo da Nike">
+                <img class="header__logo" src="https://nike-vibe-shop-images.vercel.app/nike-logo.png" alt="Logo da Nike">
             </RouterLink>
             <h3 class="header__title">just do it</h3>
             <ul class="header__iconMenu">
