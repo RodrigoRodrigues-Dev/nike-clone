@@ -5,6 +5,7 @@
     <DiscountBanner />
     <AppDownloadBanner />
     <NewsSection />
+    <ReleasesBanner />
 </template>
 
 <script setup>
