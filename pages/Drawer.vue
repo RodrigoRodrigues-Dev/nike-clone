@@ -1,6 +1,8 @@
 <template>
-    <HeaderMin />
 </template>
 
 <script setup>
+definePageMeta({
+  layout: 'custom',
+});
 </script>
