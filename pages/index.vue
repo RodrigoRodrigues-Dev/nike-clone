@@ -1,8 +1,4 @@
 <template>
-    <TopNavigation />
-    <Header />
-    <CategoryCarousel />
-    <DiscountBanner />
     <AppDownloadBanner />
     <NewsSection />
     <ReleasesBanner />
