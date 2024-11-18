@@ -78,6 +78,7 @@ onUnmounted(() => {
         justify-content: start;
         align-items: start;
         text-align: start;
+        margin-left: 5%;
     }
 
     &__logo {
