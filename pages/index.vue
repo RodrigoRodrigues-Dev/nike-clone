@@ -7,6 +7,7 @@
     <NewsSection />
     <ReleasesBanner />
     <ClassicsSlider />
+    <MegaMenu />
 </template>
 
 <script setup>
