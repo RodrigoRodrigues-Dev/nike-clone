@@ -1,7 +1,7 @@
 <template>
     <div class="category-carousel">
         <div class="category-carousel__content">
-            <div 
+            <div
                 v-for="(slide, index) in slides"
                 :key="index"
                 class="category-carousel__slide"
@@ -10,53 +10,46 @@
                 <img :src="slide.image" :alt="slide.alt" class="category-carousel__image">
                 <h2 class="category-carousel__title">{{ slide.title }}</h2>
                 <p class="category-carousel__description">
-                    {{ slide.description }} 
+                    {{ slide.description }}
                     <span class="category-carousel__link">Saiba Mais</span>
                 </p>
             </div>
 
             <div class="category-carousel__controls">
-                <icon name="ic:baseline-arrow-back-ios-new" class="category-carousel__button category-carousel__button--prev" @click="prevSlide">Anterior</icon>
-                <icon name="ic:baseline-arrow-forward-ios" class="category-carousel__button category-carousel__button--next" @click="nextSlide">Próximo</icon>
+                <icon
+                    name="ic:baseline-arrow-back-ios-new"
+                    class="category-carousel__button category-carousel__button--prev"
+                    @click="prevSlide"
+                >
+                </icon>
+                <icon
+                    name="ic:baseline-arrow-forward-ios"
+                    class="category-carousel__button category-carousel__button--next"
+                    @click="nextSlide"
+                >
+                </icon>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-const currentIndex = ref(0);
+import { useAutoSlide } from '@/composables/useAutoSlide';
+
 const slides = ref([
     {
         image: "https://nike-vibe-shop-images.vercel.app/icons/icon_release_shoes.png",
         title: "TÊNIS DE CORRIDA",
-        description: "Encontre o seu tênis ideal."
+        description: "Encontre o seu tênis ideal.",
     },
     {
         image: "https://nike-vibe-shop-images.vercel.app/icons/gift_card.png",
         title: "CARTÃO PRESENTE",
-        description: "para presentes de última hora."
-    }
+        description: "para presentes de última hora.",
+    },
 ]);
 
-let intervalId;
-
-const startAutoSlide = () => {
-    intervalId = setInterval(() => {
-        currentIndex.value = (currentIndex.value + 1) % slides.value.length;
-    }, 3300);
-};
-
-const changeSlide = (step) => {
-    clearInterval(intervalId);
-    currentIndex.value = (currentIndex.value + step + slides.value.length) % slides.value.length;
-    startAutoSlide();
-};
-
-const nextSlide = () => changeSlide(1);
-const prevSlide = () => changeSlide(-1);
-
-onMounted(() => startAutoSlide());
-onBeforeUnmount(() => clearInterval(intervalId));
+const { currentIndex, nextSlide, prevSlide } = useAutoSlide(slides);
 </script>
 
 <style lang="scss">
