@@ -8,7 +8,7 @@
                     Explore the latest Nike collection, where style meets performance. Each release features innovative
                     designs that provide comfort and support, ready for any adventure, in any weather.
                 </p>
-                <RouterLink to="/">
+                <RouterLink to="/Releases">
                     <button class="releases-banner__btn">
                         Releases
                     </button>
