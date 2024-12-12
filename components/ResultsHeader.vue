@@ -5,45 +5,74 @@
             <nav class="products-header__navigation">
                 <button class="products-header__toggle-button">
                     <span class="products-header__toggle-label" @click="toggleFilter">
-                        {{ showFilters ? 'Hide' : 'Show' }} Filters
+                        <span class="products-header__toggle-label__bold">{{ showFilters ? 'Hide' : 'Show' }}</span> Filters
                     </span>
                     <icon name="ic:baseline-tune" />
                 </button>
                 <div class="products-header__dropdown">
                     <div class="products-header__dropdown-trigger" @click="toggleBoxFilters">
-                        <span class="products-header__dropdown-label">Sort By</span>
+                        <span class="products-header__dropdown-label">
+                            Sort By:
+                            <span class="products-header__dropdown-label__sortBy-value">
+                                {{ sortByValue }}
+                            </span>
+                        </span>
                         <icon name="ic:baseline-keyboard-arrow-down" />
                     </div>
                     <div class="products-header__dropdown-menu">
                         <ul class="products-header__list">
-                            <li class="products-header__list-item" @click="sortByPriceLowHigh">Price: Low-High</li>
-                            <li class="products-header__list-item" @click="sortByPriceHighLow">Price: High-Low</li>
+                            <li class="products-header__list-item"
+                                :class="{ 'products-header__list-item--active': sortByValue === 'Price: Low-High' }"
+                                @click="sortByPriceLowHigh('Price: Low-High'); toggleBoxFilters()">Price: Low-High</li>
+                            <li class="products-header__list-item"
+                                :class="{ 'products-header__list-item--active': sortByValue === 'Price: High-Low' }"
+                                @click="sortByPriceHighLow('Price: High-Low'); toggleBoxFilters()">Price: High-Low</li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
     </div>
+    <div class="products-header__categories" v-if="categories.length">
+        <span class="products-header__category-value" v-for="category in categories" @click="removeCategory(category)">
+            <p>{{ category }}</p>
+            <icon name="ic:baseline-cancel" />
+        </span>
+    </div>
 </template>
 
 <script setup>
 import { useFiltersStore } from '@/stores/filtersStore';
+
 const filtersStore = useFiltersStore();
+
 const { toggleFilter, showFilters } = useFilters();
 
-const toggleBoxFilters = (event) => {
-    const siblingElement = event.target.parentNode.nextElementSibling;
-    if (siblingElement) {
-        siblingElement.classList.toggle('products-header__dropdown-menu--active');
+const sortByValue = ref();
+const sortByPrice = ref();
+const categories = computed(() => filtersStore.selectedFilters.categoryFilters);
+
+const toggleBoxFilters = () => {
+    const dropdownMenu = document.querySelector('.products-header__dropdown-menu');
+
+    if (dropdownMenu) {
+        dropdownMenu.classList.toggle('products-header__dropdown-menu--active');
     }
 };
 
-const sortByPriceLowHigh = () => {
-    filtersStore.filteredProducts.sort((a, b) => a.priceUSD - b.priceUSD);
+const removeCategory = (category) => {
+    filtersStore.selectedFilters.categoryFilters =
+        filtersStore.selectedFilters.categoryFilters.filter(item => item !== category);
 };
 
-const sortByPriceHighLow = () => {
+const sortByPriceLowHigh = (label) => {
+    filtersStore.filteredProducts.sort((a, b) => a.priceUSD - b.priceUSD);
+    sortByValue.value = label;
+};
+
+const sortByPriceHighLow = (label) => {
     filtersStore.filteredProducts.sort((a, b) => b.priceUSD - a.priceUSD);
+    sortByValue.value = label;
 };
 
 const filteredLength = computed(() => filtersStore.filteredProducts.length);
@@ -51,28 +80,39 @@ const filteredLength = computed(() => filtersStore.filteredProducts.length);
 
 <style lang="scss">
 .products-header {
-    width: 100%;
-    padding: 1.3rem 0;
+    z-index: 999;
     position: sticky;
     top: 4.8rem;
-    background-color: $color-white;
+    width: 100%;
+    padding: 1.3rem 0;
     border-top: 1px solid $color-light-gray-2;
+    background-color: $color-white;
 
     @media (max-width: 960px) {
         top: 3rem;
     }
 
     &__container {
-        width: 95%;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
         align-self: center;
+        width: 95%;
+
+        @media (max-width: 580px) {
+            gap: 2rem;
+            flex-direction: column;
+        }
     }
 
     &__navigation {
         display: flex;
         align-items: center;
+
+        @media (max-width: 580px) {
+            justify-content: space-between;
+            width: 100%;
+        }
     }
 
     &__title {
@@ -84,14 +124,37 @@ const filteredLength = computed(() => filtersStore.filteredProducts.length);
         }
     }
 
+    &__categories {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+    }
+
+    &__category-value {
+        margin: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        color: $color-white;
+        background-color: $color-black;
+
+        cursor: pointer;
+
+        p {
+            margin-right: 0.5rem;
+        }
+    }
+
     &__toggle-button {
-        background: transparent;
-        border: none;
         display: flex;
         align-items: center;
         gap: 0.5rem;
         font-size: 1rem;
         color: inherit;
+        border: none;
+        background: transparent;
 
         &:hover {
             cursor: pointer;
@@ -105,6 +168,15 @@ const filteredLength = computed(() => filtersStore.filteredProducts.length);
 
         @media (max-width: 960px) {
             font-size: 0.8rem;
+        }
+
+        &__bold {
+            font-weight: bold;
+        }
+
+        &__sortBy-value {
+            margin-left: 0.3rem;
+            color: $color-stone-gray;
         }
     }
 
@@ -127,11 +199,11 @@ const filteredLength = computed(() => filtersStore.filteredProducts.length);
             position: absolute;
             top: 100%;
             right: 0;
-            background-color: $color-white;
-            padding: 1rem;
-            border-radius: 0 0 0 1rem;
             display: none;
             text-align: end;
+            padding: 0.5rem;
+            border-radius: 0 0 0 1rem;
+            background-color: $color-white;
 
             &--active {
                 display: block;
@@ -140,8 +212,8 @@ const filteredLength = computed(() => filtersStore.filteredProducts.length);
     }
 
     &__list {
-        list-style: none;
         margin: 0;
+        list-style: none;
         padding: 0.5rem 0;
         min-width: 150px;
 
@@ -153,6 +225,10 @@ const filteredLength = computed(() => filtersStore.filteredProducts.length);
     &__list-item {
         padding: 0.5rem 0;
         cursor: pointer;
+
+        &--active {
+            color: $color-slate-gray;
+        }
 
         &:hover {
             color: $color-gray;
