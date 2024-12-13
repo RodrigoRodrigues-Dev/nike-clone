@@ -1,12 +1,15 @@
 <template>
     <aside class="filters">
         <div class="filters__close">
-            <icon name="ic:baseline-cancel" size="40px" @click="toggleFilter" />
+            <icon name="ic:baseline-cancel" size="35px" @click="toggleFilterSmallWidth" />
         </div>
         <div class="filters__separator filters__separator--ocult"></div>
         <ul class="filters__categories">
             <li class="filters__categories-item" v-for="item in categories" :key="item.name"
-                @click="toggleCategory(item.name)">
+                @click="
+                    toggleCategory(item.name);
+                    toggleFilterSmallWidth()
+                ">
                 {{ item.name }}
             </li>
         </ul>
@@ -49,7 +52,7 @@ import { useFiltersStore } from '@/stores/filtersStore';
 
 const filtersStore = useFiltersStore();
 
-const { toggleFilter } = useFilters();
+const { toggleFilterSmallWidth } = useFilters();
 
 const filterMappings = {
     'Gender': 'genderFilters',
@@ -68,79 +71,38 @@ const getSelectedFilterCount = (groupTitle) => {
     return filterKey ? filtersStore.selectedFilters[filterKey].length : 0;
 };
 
-
 const handleItemClick = (groupTitle, item) => {
-    if (groupTitle === 'Shop by Price') {
-        togglePriceRange(item);
-    } else if (groupTitle === 'Color') {
-        toggleColor(item.name);
-    } else if (groupTitle === 'Gender') {
-        toggleGender(item);
-    } else if (groupTitle === 'Kids') {
-        toggleGenderKid(item)
-    } else if (groupTitle === 'Kids Age') {
-        toggleKidsAge(item)
-    } else if (groupTitle === 'Sale & Offers') {
-        toggleSale(item)
-    } else if (groupTitle === 'Brand') {
-        toggleBrand(item)
-    } else if (groupTitle === 'Sports & Activities') {
-        toggleActiveType(item)
-    } else if (groupTitle === 'Best for') {
-        toggleClimate(item)
-    } else {
-        toggleCategory(item)
+    switch (groupTitle) {
+        case 'Shop by Price': togglePriceRange(item); break;
+        case 'Color': toggleColor(item.name); break;
+        case 'Gender': toggleGender(item); break;
+        case 'Kids': toggleGenderKid(item); break;
+        case 'Kids Age': toggleKidsAge(item); break;
+        case 'Sale & Offers': toggleSale(item); break;
+        case 'Brand': toggleBrand(item); break;
+        case 'Sports & Activities': toggleActiveType(item); break;
+        case 'Best for': toggleClimate(item); break;
+        default: toggleCategory(item); break;
     }
 
     const clickedElement = event.currentTarget;
     const pseudoCheckbox = clickedElement.querySelector('.filters__pseudo-checkbox');
-
     if (pseudoCheckbox) {
         pseudoCheckbox.classList.toggle('filters__pseudo-checkbox--check');
     }
 };
 
-const togglePriceRange = (range) => {
-    filtersStore.setPriceRangeFilter(range);
-};
+const togglePriceRange = (range) => { filtersStore.setPriceRangeFilter(range); };
+const toggleGender = (gender) => { filtersStore.setGenderFilter(gender); };
+const toggleGenderKid = (kidGender) => { filtersStore.setKidGenderFilter(kidGender); };
+const toggleActiveType = (type) => { filtersStore.setActivityTypeFilter(type); };
+const toggleClimate = (climate) => { filtersStore.setClimateFilter(climate); };
+const toggleKidsAge = (kidAge) => { filtersStore.setKidsAgeFilter(kidAge); };
+const toggleBrand = (brand) => { filtersStore.setBrandFilter(brand); };
+const toggleCategory = (category) => { filtersStore.setCategoryFilter(category); };
+const toggleSale = (sale) => { filtersStore.setSaleFilter(sale); };
+const toggleColor = (color) => { filtersStore.setColorFilter(color); };
 
-const toggleGender = (gender) => {
-    filtersStore.setGenderFilter(gender)
-}
-
-const toggleGenderKid = (kidGender) => {
-    filtersStore.setKidGenderFilter(kidGender)
-}
-
-const toggleActiveType = (type) => {
-    filtersStore.setActivityTypeFilter(type)
-};
-
-const toggleClimate = (climate) => {
-    filtersStore.setClimateFilter(climate)
-}
-
-const toggleKidsAge = (kidAge) => {
-    filtersStore.setKidsAgeFilter(kidAge)
-}
-
-const toggleBrand = (brand) => {
-    filtersStore.setBrandFilter(brand)
-}
-
-const toggleCategory = (category) => {
-    filtersStore.setCategoryFilter(category);
-};
-
-const toggleSale = (sale) => {
-    filtersStore.setSaleFilter(sale);
-};
-
-const toggleColor = (color) => {
-    filtersStore.setColorFilter(color);
-};
-
-// Dados de categorias e filtros
 const categories = [
     { name: 'Shoes' },
     { name: 'Hoodies & Pullovers' },
@@ -186,34 +148,34 @@ const toggleList = (e) => {
     toggledGroups.value[groupTitle] = !toggledGroups.value[groupTitle];
 
     const listElement = e.target.nextElementSibling;
-    if (toggledGroups.value[groupTitle]) {
-        listElement.style.height = `${listElement.scrollHeight}px`;
-    } else {
-        listElement.style.height = '0';
-    }
+    listElement.style.height = toggledGroups.value[groupTitle] ? `${listElement.scrollHeight}px` : '0';
 };
 </script>
 
 <style lang="scss">
 .filters {
-    background-color: $color-white;
     position: sticky;
-    max-height: 920px;
-    overflow-y: scroll;
     top: calc(3rem + 2rem + 4.5rem);
+    overflow-y: scroll;
+    width: 360px;
+    max-height: 920px;
     margin-left: 2rem;
     padding: 1rem;
-    width: 260px;
+    background-color: $color-white;
+
+    @media (max-width: 1780px) {
+        margin-left: 0.5rem;
+    }
 
     @media (max-width: 960px) {
-        position: fixed;
+        z-index: 9999;
         margin: 0;
-        padding: 1.5rem;
+        position: fixed;
         top: 0;
         left: 0;
         height: 100%;
         width: 100vw;
-        z-index: 999999;
+        padding: 1.5rem;
     }
 
     &__label {
@@ -224,8 +186,8 @@ const toggleList = (e) => {
         position: absolute;
         top: 1rem;
         right: 1rem;
-        padding: 0.5rem;
         display: none;
+        padding: 0.5rem;
 
         @media (max-width: 960px) {
             display: block;
@@ -233,11 +195,11 @@ const toggleList = (e) => {
     }
 
     &__separator {
+        margin: 1rem 0;
+        display: block;
         width: 100%;
         height: 1px;
         background-color: $color-fog-gray;
-        margin: 1rem 0;
-        display: block;
 
         &--ocult {
             @media (max-width: 960px) {
@@ -259,10 +221,10 @@ const toggleList = (e) => {
             }
 
             &--color {
-                width: 25%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                width: 25%;
             }
         }
     }
@@ -271,7 +233,6 @@ const toggleList = (e) => {
         margin: 1rem 0;
 
         &-title {
-            font-weight: bold;
             display: flex;
             justify-content: space-between;
             font-weight: 300;
@@ -290,10 +251,10 @@ const toggleList = (e) => {
 
             &--color {
                 display: flex;
+                align-items: center;
+                justify-content: start;
                 flex-wrap: wrap;
                 gap: 1rem;
-                justify-content: start;
-                align-items: center;
 
                 @media (max-width: 960px) {
                     justify-content: center;
@@ -311,8 +272,8 @@ const toggleList = (e) => {
 
             &--color {
                 display: flex;
-                flex-direction: column;
                 align-items: center;
+                flex-direction: column;
             }
         }
     }
