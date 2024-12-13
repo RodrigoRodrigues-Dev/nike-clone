@@ -5,6 +5,12 @@ export function useFilters() {
         showFilters.value = !showFilters.value;
     };
 
+    const toggleFilterSmallWidth = () => {
+        if (window.innerWidth <= 961) {
+            showFilters.value = !showFilters.value;
+        }
+    };
+
     const handleResize = () => {
         showFilters.value = window.innerWidth >= 961;
     };
@@ -21,5 +27,6 @@ export function useFilters() {
     return {
         showFilters,
         toggleFilter,
+        toggleFilterSmallWidth
     };
 }
