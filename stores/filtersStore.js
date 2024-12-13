@@ -131,7 +131,7 @@ export const useFiltersStore = defineStore('filters', {
         const [minAge, maxAge] = parseAgeRange(selectedAgeRange);
 
         filtered = filtered.filter((item) => {
-          return Array.isArray(item.kidsAge) && item.kidsAge.some((ageRange) => {
+          return Array.isArray(item.details.kidsAge) && item.details.kidsAge.some((ageRange) => {
             return ageRange.min <= maxAge && ageRange.max >= minAge;
           });
         });
@@ -140,7 +140,7 @@ export const useFiltersStore = defineStore('filters', {
       // Filter by colors
       if (state.selectedFilters.colorFilters.length > 0) {
         filtered = filtered.filter((item) =>
-          item.availableColors.some((color) =>
+          item.details.availableColors.some((color) =>
             state.selectedFilters.colorFilters.includes(color)
           )
         );
@@ -149,21 +149,21 @@ export const useFiltersStore = defineStore('filters', {
       // Filter by gender
       if (state.selectedFilters.genderFilters.length > 0) {
         filtered = filtered.filter((item) =>
-          state.selectedFilters.genderFilters.includes(item.targetGender)
+          state.selectedFilters.genderFilters.includes(item.details.targetGender)
         );
       }
 
       // Filter by kids' gender
       if (state.selectedFilters.kidGenderFilters.length > 0) {
         filtered = filtered.filter((item) =>
-          state.selectedFilters.kidGenderFilters.includes(item.kidGender)
+          state.selectedFilters.kidGenderFilters.includes(item.details.kidGender)
         );
       }
 
       // Filter by activity type
       if (state.selectedFilters.activityTypeFilters.length > 0) {
         filtered = filtered.filter((item) =>
-          state.selectedFilters.activityTypeFilters.includes(item.activityType)
+          state.selectedFilters.activityTypeFilters.includes(item.details.activityType)
         );
       }
 
@@ -177,7 +177,7 @@ export const useFiltersStore = defineStore('filters', {
       // Filter by climate suitability
       if (state.selectedFilters.climateFilters.length > 0) {
         filtered = filtered.filter((item) =>
-          state.selectedFilters.climateFilters.includes(item.idealFor)
+          state.selectedFilters.climateFilters.includes(item.details.idealFor)
         );
       }
 
