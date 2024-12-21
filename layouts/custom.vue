@@ -7,5 +7,6 @@
             <slot />
         </main>
         <Footer />
+        <SearchResults />
     </div>
 </template>
