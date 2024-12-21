@@ -2,10 +2,10 @@
     <client-only>
         <div class="product-view">
             <div class="product-view__gallery">
-                <div class="product-view__gallery__content">
+                <div class="product-view__gallery-content">
                     <div v-for="image in productStore.selectedGallery[indexImage]" :key="image">
-                        <img class="product-view__gallery__image"
-                            :class="{ 'product-view__gallery__image--active': mainImage === image }"
+                        <img class="product-view__gallery-image"
+                            :class="{ 'product-view__gallery-image--active': mainImage === image }"
                             @mouseover="changeMainImageGallery(image)" :src="image" alt="Gallery image" />
                     </div>
                 </div>
@@ -16,7 +16,7 @@
             </div>
 
             <div class="product-view__info">
-                <span v-if="productStore.ecoFriendlyLabel" class="product-view__ecoFriendlyLabel">
+                <span v-if="productStore.ecoFriendlyLabel" class="product-view__eco-friendly-label">
                     {{ productStore.ecoFriendlyLabel }}
                 </span>
                 <h2 class="product-view__name">{{ productStore.name }}</h2>
@@ -32,14 +32,16 @@
                 </div>
 
                 <div class="product-view__size-guide" v-if="productStore.sizes">
-                    <span>Select Size</span>
-                    <div class="product-view__size-guide__link">
-                        <icon name="fa6-solid:text-width" class="product-view__size-guide__icon" />
+                    <span :class="{ 'product-view__size-guide--no-select': sizeSelect }">Select Size</span>
+                    <div class="product-view__size-guide-link">
+                        <icon name="fa6-solid:text-width" class="product-view__size-guide-icon" />
                         Size Guide
                     </div>
                 </div>
 
-                <div class="product-view__sizes">
+                <span class="product-view__size-guide-notice">Fits large; we recommend ordering a half size down</span>
+
+                <div class="product-view__sizes" :class="{ 'product-view__sizes--no-select': sizeSelect }">
                     <div v-if="productStore.sizes" v-for="(size, index) in productStore.sizes" :key="index"
                         class="product-view__size" :class="{ 'product-view__size--active': activeSize === size }"
                         @click="changeSize(size)">
@@ -47,6 +49,8 @@
                     </div>
                     <span v-else class="product-view__size--no-size">ONE SIZE</span>
                 </div>
+
+                <p v-if="productAdd" class="product-view__productAdd">This product (same color and size) is already in your bag.</p>
 
                 <div class="product-view__btns">
                     <button class="product-view__btn product-view__btn--add-cart" @click="addToCart">
@@ -60,20 +64,20 @@
                 </div>
 
                 <div class="product-view__shipping">
-                    <h2 class="product-view__shipping__title">Shipping</h2>
+                    <h2 class="product-view__shipping-title">Shipping</h2>
                     <span>You'll see our shipping options at checkout</span>
                 </div>
 
                 <div class="product-view__description">
-                    <span class="product-view__description__label">
+                    <span class="product-view__description-label">
                         {{ productStore.description }}
                     </span>
-                    <ul class="product-view__description__list">
-                        <li class="product-view__description__colors">
+                    <ul class="product-view__description-list">
+                        <li class="product-view__description-colors">
                             <div class="circle"></div>
                             Shown: {{ productStore.colorDescription }}
                         </li>
-                        <li class="product-view__description__style">
+                        <li class="product-view__description-style">
                             <div class="circle"></div>
                             Style: {{ productStore.styleCode }}
                         </li>
@@ -83,6 +87,7 @@
         </div>
 
         <ProductHighlight />
+        <PopupCart />
     </client-only>
 </template>
 
@@ -92,13 +97,48 @@ definePageMeta({
 });
 
 import { useProductStore } from '@/stores/productStore';
+import { useCartStore } from '~/stores/cartStore';
 import ProductHighlight from '~/components/ProductHighlight.vue';
 
 const productStore = useProductStore();
+const cartStore = useCartStore();
 const mainImage = ref(productStore.mainImage?.[0] || null);
 const activeThumbnail = ref(productStore.mainImage?.[0] || null);
 const activeSize = ref(null);
 const indexImage = ref(0);
+const sizeSelect = ref(false);
+const productAdd = ref(false);
+
+const addToCart = () => {
+    if (!activeSize.value) {
+        sizeSelect.value = true;
+        return;
+    }
+
+    const productData = {
+        index: productStore.index,
+        name: productStore.name,
+        mainImage: productStore.mainImage?.[indexImage.value],
+        price: productStore.price,
+        subTitle: productStore.subTitle,
+        colors: productStore.colorDescription,
+        size: activeSize.value,
+        productAmount: 1
+    };
+
+    const existingProduct = cartStore.itens.find(
+        (item) => item.mainImage === productData.mainImage && item.size === productData.size
+    );
+
+    if (existingProduct) {
+        productAdd.value = true;
+        return;
+    }
+
+    productAdd.value = false;
+    cartStore.itens.unshift(productData);
+    sizeSelect.value = false;
+};
 
 const changeMainImage = (image, index) => {
     mainImage.value = image;
@@ -144,7 +184,7 @@ const changeSize = (size) => {
     &__gallery {
         text-align: end;
 
-        &__content {
+        &-content {
             position: sticky;
             top: 110px;
             height: auto;
@@ -159,7 +199,7 @@ const changeSize = (size) => {
             }
         }
 
-        &__image {
+        &-image {
             width: 60px;
             height: 60px;
             border-radius: 0.3rem;
@@ -207,7 +247,7 @@ const changeSize = (size) => {
         font-size: 2rem;
     }
 
-    &__ecoFriendlyLabel {
+    &__eco-friendly-label {
         color: $color-copper;
     }
 
@@ -257,14 +297,22 @@ const changeSize = (size) => {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 1rem 0;
+        margin-top: 1rem;
 
-        &__link {
+        &-notice {
+            color: $color-dust-gray;
+        }
+
+        &--no-select {
+            color: red;
+        }
+
+        &-link {
             display: flex;
             align-items: center
         }
 
-        &__icon {
+        &-icon {
             margin-right: 0.5rem;
         }
     }
@@ -273,6 +321,12 @@ const changeSize = (size) => {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 0.5rem;
+        padding: 1rem 0.5rem;
+
+        &--no-select {
+            border: 1px solid red;
+            border-radius: 1rem;
+        }
     }
 
     &__size {
@@ -282,6 +336,7 @@ const changeSize = (size) => {
         height: 46px;
         border: 1px solid $color-silver-gray;
         border-radius: 5px;
+        cursor: pointer;
 
         &:hover,
         &--active {
@@ -336,7 +391,7 @@ const changeSize = (size) => {
     }
 
     &__shipping {
-        &__title {
+        &-title {
             font-size: 1rem;
             font-weight: 300;
             margin-bottom: 0.3rem;
@@ -344,17 +399,22 @@ const changeSize = (size) => {
     }
 
     &__description {
-        &__label {
+        &-label {
             display: block;
             padding: 2rem 0;
         }
 
-        &__colors,
-        &__style {
+        &-colors,
+        &-style {
             display: flex;
             align-items: center;
             margin-bottom: 1rem;
         }
+    }
+
+    &__productAdd {
+        color: red;
+        text-align: center;
     }
 }
 
