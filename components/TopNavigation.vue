@@ -1,18 +1,18 @@
 <template>
     <div class="top-navigation">
-        <div class="container">
+        <div class="top-navigation__container">
             <div class="top-navigation__logo">
                 <img src="https://nike-vibe-shop-images.vercel.app/icons/jordan.svg" alt="logo Air Jordan">
                 <img src="https://nike-vibe-shop-images.vercel.app/icons/snkrs.svg" alt="logo SNKRS">
             </div>
             <div class="top-navigation__menu">
-                <div class="top-navigation__menu__item">Nike Journal</div>
-                <div class="line-vertical"></div>
-                <div class="top-navigation__menu__item">Ajuda</div>
-                <div class="line-vertical"></div>
-                <div class="top-navigation__menu__item">Junte-se a nós</div>
-                <div class="line-vertical"></div>
-                <div class="top-navigation__menu__item">Entrar</div>
+                <div class="top-navigation__menu-item">Nike Journal</div>
+                <div class="top-navigation__line-vertical"></div>
+                <div class="top-navigation__menu-item">Ajuda</div>
+                <div class="top-navigation__line-vertical"></div>
+                <div class="top-navigation__menu-item">Junte-se a nós</div>
+                <div class="top-navigation__line-vertical"></div>
+                <div class="top-navigation__menu-item">Entrar</div>
             </div>
         </div>
     </div>
@@ -22,6 +22,8 @@
 @use 'sass:color';
 
 .top-navigation {
+    z-index: 9999;
+    position: relative;
     background-color: $color-light-background;
     padding: 0.7rem 2rem;
     color: $color-primary;
@@ -38,7 +40,7 @@
         align-items: center;
         gap: 0.8rem;
 
-        &__item {
+        &-item {
             font-size: 0.76rem;
 
             &:hover {
@@ -48,17 +50,17 @@
         }
     }
 
-    .container {
+    &__container {
         max-width: 100%;
         display: flex;
         justify-content: space-between;
     }
-}
 
-.line-vertical {
-    height: 60%;
-    width: 1px;
-    background-color: $color-black;
+    &__line-vertical {
+        height: 60%;
+        width: 1px;
+        background-color: $color-black;
+    }
 }
 
 @media (max-width: 1025px) {
