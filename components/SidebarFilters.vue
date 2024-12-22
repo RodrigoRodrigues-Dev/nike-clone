@@ -49,29 +49,18 @@
 
 <script setup>
 import { useFiltersStore } from '@/stores/filtersStore';
+import { categories, filterGroup, filterMappings } from '../data/filtersData';
 
 const filtersStore = useFiltersStore();
-
+const toggledGroups = ref({});
 const { toggleFilterSmallWidth } = useFilters();
-
-const filterMappings = {
-    'Gender': 'genderFilters',
-    'Color': 'colorFilters',
-    'Shop by Price': 'priceFilters',
-    'Sale & Offers': 'saleFilters',
-    'Kids Age': 'kidAgeFilters',
-    'Kids': 'kidGenderFilters',
-    'Brand': 'brandFilters',
-    'Sports & Activities': 'activityTypeFilters',
-    'Best for': 'climateFilters',
-};
 
 const getSelectedFilterCount = (groupTitle) => {
     const filterKey = filterMappings[groupTitle];
     return filterKey ? filtersStore.selectedFilters[filterKey].length : 0;
 };
 
-const handleItemClick = (groupTitle, item) => {
+const handleItemClick = (groupTitle, item, event) => {
     switch (groupTitle) {
         case 'Shop by Price': togglePriceRange(item); break;
         case 'Color': toggleColor(item.name); break;
@@ -85,13 +74,21 @@ const handleItemClick = (groupTitle, item) => {
         default: toggleCategory(item); break;
     }
 
-    const clickedElement = event.currentTarget;
-    const pseudoCheckbox = clickedElement.querySelector('.filters__pseudo-checkbox');
+    const pseudoCheckbox = event.currentTarget.querySelector('.filters__pseudo-checkbox');
     if (pseudoCheckbox) {
         pseudoCheckbox.classList.toggle('filters__pseudo-checkbox--check');
     }
 };
 
+const toggleList = (e) => {
+    const groupTitle = e.target.textContent.trim();
+    toggledGroups.value[groupTitle] = !toggledGroups.value[groupTitle];
+
+    const listElement = e.target.nextElementSibling;
+    listElement.style.height = toggledGroups.value[groupTitle] ? `${listElement.scrollHeight}px` : '0';
+};
+
+// Toggle functions
 const togglePriceRange = (range) => { filtersStore.setPriceRangeFilter(range); };
 const toggleGender = (gender) => { filtersStore.setGenderFilter(gender); };
 const toggleGenderKid = (kidGender) => { filtersStore.setKidGenderFilter(kidGender); };
@@ -102,54 +99,6 @@ const toggleBrand = (brand) => { filtersStore.setBrandFilter(brand); };
 const toggleCategory = (category) => { filtersStore.setCategoryFilter(category); };
 const toggleSale = (sale) => { filtersStore.setSaleFilter(sale); };
 const toggleColor = (color) => { filtersStore.setColorFilter(color); };
-
-const categories = [
-    { name: 'Shoes' },
-    { name: 'Hoodies & Pullovers' },
-    { name: 'Jackets & Vests' },
-    { name: 'Pants & Tights' },
-    { name: 'Tops & T-Shirts' },
-    { name: 'Shorts' },
-    { name: 'Tights & Leggings' },
-    { name: 'Tracksuits' },
-    { name: 'Accessories & Equipment' },
-];
-
-const filterGroup = [
-    { title: 'Sale & Offers', group: ['Black Friday - Up to 60% Off', 'See Price in Bag', 'Sale'] },
-    { title: 'Shop by Price', group: ['$25 - $50', '$50 - $100', '$100 - $150', '$Over $150'] },
-    { title: 'Gender', group: ['Men', 'Women', 'Unisex'] },
-    { title: 'Kids', group: ['Boys', 'Girls'] },
-    { title: 'Kids Age', group: ['Babies & Toddlers (0-3 yrs)', 'Little Kids (3-7 yrs)', 'Big Kids (7-15 yrs)'] },
-    {
-        title: 'Color', group: [
-            { name: 'Black', colorCode: '#000000' },
-            { name: 'Blue', colorCode: '#1790C8' },
-            { name: 'Brown', colorCode: '#825D41' },
-            { name: 'Green', colorCode: '#7BBA3C' },
-            { name: 'Grey', colorCode: '#808080' },
-            { name: 'Orange', colorCode: '#F36B26' },
-            { name: 'Pink', colorCode: '#F0728F' },
-            { name: 'Purple', colorCode: '#8D429F' },
-            { name: 'Red', colorCode: '#E7352B' },
-            { name: 'White', colorCode: '#FFFFFF' },
-            { name: 'Yellow', colorCode: '#FED533' }
-        ]
-    },
-    { title: 'Brand', group: ['Nike Sportswear'] },
-    { title: 'Sports & Activities', group: ['Lifestyle', 'Training & Gym', 'Tennis'] },
-    { title: 'Best for', group: ['Cold Weather'] },
-];
-
-const toggledGroups = ref({});
-
-const toggleList = (e) => {
-    const groupTitle = e.target.textContent.trim();
-    toggledGroups.value[groupTitle] = !toggledGroups.value[groupTitle];
-
-    const listElement = e.target.nextElementSibling;
-    listElement.style.height = toggledGroups.value[groupTitle] ? `${listElement.scrollHeight}px` : '0';
-};
 </script>
 
 <style lang="scss">
