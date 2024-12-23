@@ -29,7 +29,7 @@
                 <RouterLink to="/Cart">
                     <div class="header__menu-icon-container">
                         <icon class="header__menu-icon" name="solar:bag-3-broken" />
-                        <p>{{ cartStore.itens.length }}</p>
+                        <p>{{ cartStore.items.length }}</p>
                     </div>
                 </RouterLink>
             </div>

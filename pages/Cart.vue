@@ -1,10 +1,10 @@
 <template>
   <div class="cart">
-    <template v-if="cartStore.itens.length > 0 && !cartStore.purchaseCompleted">
+    <template v-if="cartStore.items.length > 0 && !cartStore.purchaseCompleted">
       <!-- Cart Bag Section -->
       <div class="cart__bag">
         <h2 class="cart__bag-title">Bag</h2>
-        <div class="cart__bag-item" v-for="item in cartStore.itens" :key="item.id">
+        <div class="cart__bag-item" v-for="item in cartStore.items" :key="item.id">
           <div class="cart__bag-item-content">
             <div>
               <img class="cart__bag-item-image" :src="item.mainImage" alt="" />
@@ -105,7 +105,7 @@
         </p>
       </div>
     </template>
-    <template v-if="cartStore.itens.length === 0 && !cartStore.purchaseCompleted">
+    <template v-if="cartStore.items.length === 0 && !cartStore.purchaseCompleted">
       <div class="cart__empty">
         <h1 class="cart__empty-title">Your cart is empty</h1>
         <p class="cart__empty-description">
@@ -152,7 +152,7 @@ const newPrice = (item) => {
 
 const toggleFinalizePurchase = () => {
   cartStore.purchaseCompleted = !cartStore.purchaseCompleted;
-  cartStore.itens = [];
+  cartStore.items = [];
   setTimeout(() => {
     cartStore.purchaseCompleted = false;
   }, 3500);
@@ -180,11 +180,11 @@ const removeProductAmount = (item) => {
 };
 
 const removeProduct = (item) => {
-  const indexProduct = cartStore.itens.indexOf(item);
-  cartStore.itens.splice(indexProduct, 1);
+  const indexProduct = cartStore.items.indexOf(item);
+  cartStore.items.splice(indexProduct, 1);
 };
 
-const values = computed(() => cartStore.itens.map((item) => item.price));
+const values = computed(() => cartStore.items.map((item) => item.price));
 const initialValue = 0;
 const sumWithInitial = computed(() => {
   return values.value.reduce(
@@ -198,7 +198,7 @@ const progressWidth = computed(() => {
   return Math.min((sumWithInitial.value / maxAmount) * 100, 100) + '%';
 });
 
-cartStore.itens.forEach(initializeOriginalPrice);
+cartStore.items.forEach(initializeOriginalPrice);
 </script>
 
 <style lang="scss">
