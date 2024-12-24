@@ -32,8 +32,7 @@
                     <img v-for="(image, index) in productStore.additionalImages" :key="index" :src="image" :alt="image"
                         class="product-view__thumbnail"
                         :class="{ 'product-view__thumbnail--active': activeThumbnail === image }"
-                        @click="changeMainImage(image, index), changeMainImageStart(image)"
-                    />
+                        @click="changeMainImage(image, index), changeMainImageStart(image), updateMarkeHeartProduct()" />
                 </div>
 
                 <!-- Size Guide Section -->
@@ -57,8 +56,10 @@
                 </div>
 
                 <!-- Product Add Messages -->
-                <p v-if="productAdd" class="product-view__productAdd">This product (same color and size) is already in your bag.</p>
-                <p v-if="productAddFav" class="product-view__productAddFav">This product (same color) is already in your favorite.</p>
+                <p v-if="productAdd" class="product-view__productAdd">This product (same color and size) is already in
+                    your bag.</p>
+                <p v-if="productAddFav" class="product-view__productAddFav">This product (same color) is already in your
+                    favorite.</p>
 
                 <!-- Buttons Section -->
                 <div class="product-view__btns">
@@ -67,8 +68,9 @@
                     </button>
                     <button class="product-view__btn product-view__btn--add-fav" @click="addToFav">
                         Favorite
-                        <icon class="fav-icon" name="line-md:heart" size="23px"
-                            style="margin-left: 0.3rem; margin-bottom: 0.1rem;" />
+                        <icon class="fav-icon"
+                            :name="isProductMarkedAsFavorite ? 'mdi:cards-heart' : 'material-symbols:favorite-outline'"
+                            size="23px" style="margin-left: 0.3rem; margin-bottom: 0.1rem;" />
                     </button>
                 </div>
 
@@ -119,11 +121,14 @@ const mainImageStart = ref(productStore.mainImage?.[0] || null);
 const mainImage = ref(productStore.mainImage?.[0] || null);
 const activeThumbnail = ref(productStore.mainImage?.[0] || null);
 const productAddFav = ref(false);
+const isProductMarkedAsFavorite = ref(false);
 
+// Change Main Image Start
 const changeMainImageStart = (image) => {
     mainImageStart.value = image;
 };
 
+// Add to Cart with Image
 const addToCartWithImage = () => {
     const productData = {
         index: productStore.index,
@@ -132,13 +137,17 @@ const addToCartWithImage = () => {
         price: productStore.price,
         subTitle: productStore.subTitle,
         colors: productStore.colorDescription,
+        sizes: productStore.sizes,
         size: activeSize.value,
+        productAddFav: false,
+        markeHeartProduct: false,
         productAmount: 1
     };
 
     addToCart(productData);
 };
 
+// Add to Favorite
 const addToFav = () => {
     const productData = {
         index: productStore.index,
@@ -160,23 +169,39 @@ const addToFav = () => {
         return;
     }
 
+    isProductMarkedAsFavorite.value = true;
     productAddFav.value = false;
     favoriteStore.items.unshift(productData);
 };
 
+// Change Main Image
 const changeMainImage = (image, index) => {
     mainImage.value = image;
     activeThumbnail.value = image;
     indexImage.value = index;
 };
 
+// Change Main Image Gallery
 const changeMainImageGallery = (image) => {
     mainImage.value = image;
 };
 
+// Change Size
 const changeSize = (size) => {
     activeSize.value = size;
 };
+
+const updateMarkeHeartProduct = () => {
+    const productExistsImage = favoriteStore.items.some((product) => product.mainImage === computed(() => mainImageStart.value).value);
+
+    if (productExistsImage) {
+        isProductMarkedAsFavorite.value = true;
+    } else {
+        isProductMarkedAsFavorite.value = false;
+    }
+};
+
+updateMarkeHeartProduct();
 </script>
 
 <style lang="scss">
