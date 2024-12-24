@@ -10,15 +10,31 @@
               <img class="cart__bag-item-image" :src="item.mainImage" alt="" />
               <div class="cart__bag-item-actions">
                 <div class="cart__bag-item-actions-quantity">
-                  <icon name="tdesign:remove" :style="{ display: item.productAmount >= 2 ? 'block' : 'none' }"
-                    @click="removeProductAmount(item)" />
-                  <icon name="mi:delete" :style="{ display: item.productAmount < 2 ? 'block' : 'none' }"
-                    @click=removeProduct(item) />
+                  <icon 
+                    name="tdesign:remove" 
+                    class="cart__bag-item-actions__btn" 
+                    :style="{ display: item.productAmount >= 2 ? 'block' : 'none' }"
+                    @click="removeProductAmount(item)" 
+                  />
+                  <icon 
+                    name="mi:delete" 
+                    class="cart__bag-item-actions__btn"  
+                    :style="{ display: item.productAmount < 2 ? 'block' : 'none' }"
+                    @click=removeProduct(item) 
+                  />
                   {{ item.productAmount }}
-                  <icon @click="addProductAmount(item)" name="material-symbols:add" />
+                  <icon
+                    class="cart__bag-item-actions__btn" 
+                    name="material-symbols:add" 
+                    @click="addProductAmount(item)" 
+                  />
                 </div>
                 <div class="cart__bag-item-favorite">
-                  <icon class="cart__bag-item-favorite-icon" name="material-symbols:favorite-outline" />
+                  <icon 
+                    class="cart__bag-item-favorite-btn" 
+                    :name="item.markeHeartProduct ? 'mdi:cards-heart' : 'material-symbols:favorite-outline'" 
+                    @click="addToFavorite(item)"
+                  />
                 </div>
               </div>
             </div>
@@ -32,6 +48,7 @@
               <span class="cart__bag-item-price">${{ item.price }}.00</span>
             </div>
           </div>
+          <p class="cart__already-exists" v-if="item.productAddFav">This product (same color) is already in your favorite</p>
           <div class="cart__bag-item-shipping">
             <div class="cart__bag-item-shipping-top">
               <span>Shipping</span>
@@ -128,6 +145,7 @@
       </div>
     </template>
   </div>
+  <PopupItem />
 </template>
 
 <script setup>
@@ -135,10 +153,37 @@ definePageMeta({
   layout: 'custom',
 });
 
+import { useFavoriteStore } from '~/stores/favoriteStore';
 import { RouterLink } from 'vue-router';
 import { useCartStore } from '~/stores/cartStore';
 
 const cartStore = useCartStore();
+const favoriteStore = useFavoriteStore();
+
+const addToFavorite = (item) => {
+  const productData = {
+    id: item.id,
+    name: item.name,
+    subTitle: item.subTitle,
+    mainImage: item.mainImage,
+    price: item.price,
+    colors: item.colors,
+    size: item.size,
+    sizes: item.sizes,
+    productAmount: item.productAmount,
+  }
+
+  const productAlreadyExists = favoriteStore.items.some((product) => product.mainImage === item.mainImage);
+
+  if (productAlreadyExists) {
+    item.productAddFav = true;
+    item.markeHeartProduct = true;
+    return;
+  }
+
+  item.markeHeartProduct = true;
+  favoriteStore.items.unshift(productData);
+}
 
 const initializeOriginalPrice = (item) => {
   if (!item.originalPrice) {
@@ -198,7 +243,20 @@ const progressWidth = computed(() => {
   return Math.min((sumWithInitial.value / maxAmount) * 100, 100) + '%';
 });
 
-cartStore.items.forEach(initializeOriginalPrice);
+const updateMarkeHeartProduct = (item) => {
+  const productExists = favoriteStore.items.some((product) => product.mainImage === item.mainImage);
+  if (productExists) {
+    item.markeHeartProduct = true;
+  } else {
+    item.markeHeartProduct = false;
+    item.productAddFav = false;
+  }
+};
+
+cartStore.items.forEach((item) => {
+  initializeOriginalPrice(item);
+  updateMarkeHeartProduct(item);
+});
 </script>
 
 <style lang="scss">
@@ -273,8 +331,12 @@ cartStore.items.forEach(initializeOriginalPrice);
         width: 164px;
       }
 
-      &-favorite-icon {
+      &-favorite-btn {
         padding: 0.6rem;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       &-actions {
@@ -282,6 +344,13 @@ cartStore.items.forEach(initializeOriginalPrice);
         align-items: center;
         justify-content: space-between;
         margin: 1rem 0;
+
+        &__btn {
+          padding: 0.6rem;
+          &:hover {
+            cursor: pointer;
+          }
+        }
 
         &-quantity,
         .cart__bag-item-favorite {
@@ -490,6 +559,11 @@ cartStore.items.forEach(initializeOriginalPrice);
         cursor: pointer;
       }
     }
+  }
+
+  &__already-exists {
+    color: red;
+    margin-bottom: 0.5rem;
   }
 }
 
