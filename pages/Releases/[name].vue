@@ -1,6 +1,7 @@
 <template>
     <client-only>
         <div class="product-view">
+            <!-- Gallery Section -->
             <div class="product-view__gallery">
                 <div class="product-view__gallery-content">
                     <div v-for="image in productStore.selectedGallery[indexImage]" :key="image">
@@ -11,10 +12,12 @@
                 </div>
             </div>
 
+            <!-- Main Image Section -->
             <div class="product-view__main-image">
                 <img :src="mainImage" alt="Main image" />
             </div>
 
+            <!-- Product Info Section -->
             <div class="product-view__info">
                 <span v-if="productStore.ecoFriendlyLabel" class="product-view__eco-friendly-label">
                     {{ productStore.ecoFriendlyLabel }}
@@ -24,13 +27,16 @@
                 <span class="product-view__price">{{ `$${productStore.price}` }}</span>
                 <span class="product-view__promotion">{{ productStore.discountLabel }}</span>
 
+                <!-- Thumbnails Section -->
                 <div class="product-view__thumbnails">
                     <img v-for="(image, index) in productStore.additionalImages" :key="index" :src="image" :alt="image"
                         class="product-view__thumbnail"
                         :class="{ 'product-view__thumbnail--active': activeThumbnail === image }"
-                        @click="changeMainImage(image, index)" />
+                        @click="changeMainImage(image, index), changeMainImageStart(image)"
+                    />
                 </div>
 
+                <!-- Size Guide Section -->
                 <div class="product-view__size-guide" v-if="productStore.sizes">
                     <span :class="{ 'product-view__size-guide--no-select': sizeSelect }">Select Size</span>
                     <div class="product-view__size-guide-link">
@@ -38,9 +44,9 @@
                         Size Guide
                     </div>
                 </div>
-
                 <span class="product-view__size-guide-notice">Fits large; we recommend ordering a half size down</span>
 
+                <!-- Sizes Section -->
                 <div class="product-view__sizes" :class="{ 'product-view__sizes--no-select': sizeSelect }">
                     <div v-if="productStore.sizes" v-for="(size, index) in productStore.sizes" :key="index"
                         class="product-view__size" :class="{ 'product-view__size--active': activeSize === size }"
@@ -50,24 +56,29 @@
                     <span v-else class="product-view__size--no-size">ONE SIZE</span>
                 </div>
 
+                <!-- Product Add Messages -->
                 <p v-if="productAdd" class="product-view__productAdd">This product (same color and size) is already in your bag.</p>
+                <p v-if="productAddFav" class="product-view__productAddFav">This product (same color) is already in your favorite.</p>
 
+                <!-- Buttons Section -->
                 <div class="product-view__btns">
-                    <button class="product-view__btn product-view__btn--add-cart" @click="addToCart">
+                    <button class="product-view__btn product-view__btn--add-cart" @click="addToCartWithImage">
                         Add to Bag
                     </button>
-                    <button class="product-view__btn product-view__btn--add-fav">
+                    <button class="product-view__btn product-view__btn--add-fav" @click="addToFav">
                         Favorite
                         <icon class="fav-icon" name="line-md:heart" size="23px"
                             style="margin-left: 0.3rem; margin-bottom: 0.1rem;" />
                     </button>
                 </div>
 
+                <!-- Shipping Section -->
                 <div class="product-view__shipping">
                     <h2 class="product-view__shipping-title">Shipping</h2>
                     <span>You'll see our shipping options at checkout</span>
                 </div>
 
+                <!-- Description Section -->
                 <div class="product-view__description">
                     <span class="product-view__description-label">
                         {{ productStore.description }}
@@ -87,7 +98,7 @@
         </div>
 
         <ProductHighlight />
-        <PopupCart />
+        <PopupItem />
     </client-only>
 </template>
 
@@ -97,28 +108,27 @@ definePageMeta({
 });
 
 import { useProductStore } from '@/stores/productStore';
-import { useCartStore } from '~/stores/cartStore';
+import { useFavoriteStore } from '~/stores/favoriteStore';
+import { useCart } from '~/composables/useCart';
 import ProductHighlight from '~/components/ProductHighlight.vue';
 
 const productStore = useProductStore();
-const cartStore = useCartStore();
+const favoriteStore = useFavoriteStore();
+const { sizeSelect, activeSize, indexImage, productAdd, addToCart } = useCart();
+const mainImageStart = ref(productStore.mainImage?.[0] || null);
 const mainImage = ref(productStore.mainImage?.[0] || null);
 const activeThumbnail = ref(productStore.mainImage?.[0] || null);
-const activeSize = ref(null);
-const indexImage = ref(0);
-const sizeSelect = ref(false);
-const productAdd = ref(false);
+const productAddFav = ref(false);
 
-const addToCart = () => {
-    if (!activeSize.value) {
-        sizeSelect.value = true;
-        return;
-    }
+const changeMainImageStart = (image) => {
+    mainImageStart.value = image;
+};
 
+const addToCartWithImage = () => {
     const productData = {
         index: productStore.index,
         name: productStore.name,
-        mainImage: productStore.mainImage?.[indexImage.value],
+        mainImage: mainImageStart.value,
         price: productStore.price,
         subTitle: productStore.subTitle,
         colors: productStore.colorDescription,
@@ -126,18 +136,32 @@ const addToCart = () => {
         productAmount: 1
     };
 
-    const existingProduct = cartStore.itens.find(
-        (item) => item.mainImage === productData.mainImage && item.size === productData.size
+    addToCart(productData);
+};
+
+const addToFav = () => {
+    const productData = {
+        index: productStore.index,
+        name: productStore.name,
+        mainImage: productStore.mainImage?.[indexImage.value],
+        price: productStore.price,
+        subTitle: productStore.subTitle,
+        colors: productStore.colorDescription,
+        sizes: productStore.sizes,
+        productAmount: 1
+    };
+
+    const existingProduct = favoriteStore.items.find(
+        (item) => item.mainImage === productData.mainImage
     );
 
     if (existingProduct) {
-        productAdd.value = true;
+        productAddFav.value = true;
         return;
     }
 
-    productAdd.value = false;
-    cartStore.itens.unshift(productData);
-    sizeSelect.value = false;
+    productAddFav.value = false;
+    favoriteStore.items.unshift(productData);
 };
 
 const changeMainImage = (image, index) => {
@@ -412,7 +436,8 @@ const changeSize = (size) => {
         }
     }
 
-    &__productAdd {
+    &__productAdd,
+    &__productAddFav {
         color: red;
         text-align: center;
     }
