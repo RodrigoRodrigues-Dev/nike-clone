@@ -107,7 +107,7 @@ const toggleColor = (color) => { filtersStore.setColorFilter(color); };
     top: calc(3rem + 2rem + 4.5rem);
     overflow-y: scroll;
     width: 360px;
-    max-height: 920px;
+    height: 80vh;
     margin-left: 2rem;
     padding: 1rem;
     background-color: $color-white;
@@ -122,7 +122,7 @@ const toggleColor = (color) => { filtersStore.setColorFilter(color); };
         position: fixed;
         top: 0;
         left: 0;
-        height: 100%;
+        height: 100vh;
         width: 100vw;
         padding: 1.5rem;
     }
