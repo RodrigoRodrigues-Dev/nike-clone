@@ -23,7 +23,7 @@ export const useProductStore = defineStore('product', {
       this.mainImage = prop.images.additional.map(image => image.thumbnail) || null;
       this.subTitle = prop.productDescription || null;
       this.discountLabel = prop.promoLabel || null;
-      this.ecoFriendlyLabel = prop.ecoFriendlyLabel || null;
+      this.ecoFriendlyLabel = prop.labels.ecoFriendly || null;
       this.additionalImages = prop.images.additional.map(image => image.thumbnail) || null;
       this.name = prop.productName || null;
       this.sizes = prop.details.sizes || null;

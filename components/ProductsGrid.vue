@@ -11,7 +11,7 @@
         :key="item.productId" 
         :mainImage="item.images.main"
         :title="item.productName" 
-        :message="item.ecoFriendlyLabel" 
+        :message="item.labels.ecoFriendly" 
         :subtitle="item.productDescription"
         :additional-images="item.images.thumbnailImages" 
         :colorOptions="`colors ${item.details.availableColors.length}`"
