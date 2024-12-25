@@ -250,7 +250,7 @@ updateMarkeHeartProduct();
 
         &-image {
             width: 60px;
-            height: 60px;
+            height: auto;
             border-radius: 0.3rem;
             margin-bottom: 0.5rem;
             background-color: $color-light-background;
@@ -353,7 +353,7 @@ updateMarkeHeartProduct();
         }
 
         &--no-select {
-            color: red;
+            color: $color-red;
         }
 
         &-link {
@@ -373,7 +373,7 @@ updateMarkeHeartProduct();
         padding: 1rem 0.5rem;
 
         &--no-select {
-            border: 1px solid red;
+            border: 1px solid $color-red;
             border-radius: 1rem;
         }
     }
@@ -463,7 +463,7 @@ updateMarkeHeartProduct();
 
     &__productAdd,
     &__productAddFav {
-        color: red;
+        color: $color-red;
         text-align: center;
     }
 }

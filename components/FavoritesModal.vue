@@ -122,7 +122,7 @@ const addToCartWithImage = () => {
     &__info {
         width: calc(100% - 432px);
         text-align: start;
-        margin-left: 0.5rem;
+        margin-left: 1rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -214,7 +214,7 @@ const addToCartWithImage = () => {
             margin-bottom: 0.5rem;
 
             &--no-select {
-                color: red;
+                color: $color-red;
             }
         }
 
@@ -223,7 +223,7 @@ const addToCartWithImage = () => {
 
             &--active {
                 display: block;
-                color: red;
+                color: $color-red;
                 margin-bottom: 0.5rem;
             }
         }
@@ -241,7 +241,7 @@ const addToCartWithImage = () => {
             border-radius: 0.5rem;
 
             &--no-select {
-                border: 3px solid red;
+                border: 3px solid $color-red;
             }
 
             @media (max-width: 960px) {

@@ -562,7 +562,7 @@ cartStore.items.forEach((item) => {
   }
 
   &__already-exists {
-    color: red;
+    color: $color-red;
     margin-bottom: 0.5rem;
   }
 }
@@ -570,7 +570,7 @@ cartStore.items.forEach((item) => {
 .progress-bar-container {
   width: 100%;
   height: 20px;
-  background-color: #ddd;
+  background-color: $color-fog-gray;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
@@ -579,7 +579,7 @@ cartStore.items.forEach((item) => {
 .progress-bar {
   height: 100%;
   width: 0%;
-  background-color: #4caf50;
+  background-color: $color-spring-green;
   transition: width 0.3s ease;
 }
 
