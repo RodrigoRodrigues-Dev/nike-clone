@@ -1,14 +1,26 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="favorites">
     <div class="favorites__container" v-if="favoriteStore.items.length">
       <h1 class="favorites__title">Favorites</h1>
       <div class="favorites__items">
-        <div class="favorites__item" v-for="item in favoriteStore.items" :key="item.id">
+        <div
+          class="favorites__item"
+          v-for="item in favoriteStore.items"
+          :key="item.id"
+        >
           <div class="favorites__item-image-container">
-            <div class="favorites__item-icon-container" @click="removeFavorite(item)">
+            <div
+              class="favorites__item-icon-container"
+              @click="removeFavorite(item)"
+            >
               <icon class="favorites__item-icon" name="ic:round-favorite" />
             </div>
-            <img class="favorites__item-image" :src="item.mainImage" alt="Favorite item image">
+            <img
+              class="favorites__item-image"
+              :src="item.mainImage"
+              alt="Favorite item image"
+            />
           </div>
           <div class="favorites__item-info">
             <div>
@@ -26,11 +38,12 @@
 
     <div class="no-results__favorite" v-else>
       <p class="no-results__favorite-title">No favorites found.</p>
-      <p class="no-results__favorite-description">Your favorites list is currently empty. Start adding items to see them here!</p>
+      <p class="no-results__favorite-description">
+        Your favorites list is currently empty. Start adding items to see them
+        here!
+      </p>
       <RouterLink to="/Releases">
-        <button class="no-results__favorite-btn">
-          Continue Shopping
-        </button>
+        <button class="no-results__favorite-btn">Continue Shopping</button>
       </RouterLink>
     </div>
   </div>
@@ -39,8 +52,9 @@
 </template>
 
 <script setup>
+// eslint-disable-next-line no-undef
 definePageMeta({
-  layout: 'custom',
+  layout: 'custom'
 });
 
 import { useFavoriteStore } from '~/stores/favoriteStore';

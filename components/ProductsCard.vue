@@ -1,6 +1,10 @@
 <template>
   <div class="product-card">
-    <img :src="mainImage" alt="NikeCourt Zoom Vapor Cage 4 Rafa" class="product-card__image" />
+    <img
+      :src="mainImage"
+      alt="NikeCourt Zoom Vapor Cage 4 Rafa"
+      class="product-card__image"
+    />
 
     <div class="product-card__details">
       <span class="product-card__message">{{ message }}</span>
@@ -14,10 +18,17 @@
           :key="index"
           @mouseover="changeMainImage(image)"
         >
-          <img :src="image" :alt="'Image ' + (index + 1)" class="product-card__additional-image" />
+          <img
+            :src="image"
+            :alt="'Image ' + (index + 1)"
+            class="product-card__additional-image"
+          />
         </div>
 
-        <div v-if="hiddenImageCount > 0" class="product-card__hidden-images-indicator">
+        <div
+          v-if="hiddenImageCount > 0"
+          class="product-card__hidden-images-indicator"
+        >
           +{{ hiddenImageCount }}
         </div>
       </div>
@@ -33,18 +44,18 @@
 import { ref, computed } from 'vue';
 
 const props = defineProps({
-  mainImage: String,               
-  title: String,                   
-  message: String,                 
+  mainImage: String,
+  title: String,
+  message: String,
   subtitle: String,
-  colorOptions: String,           
+  colorOptions: String,
   price: String,
   promotion: String,
   promo: String,
   additionalImages: {
     type: Array,
-    default: () => [],
-  },
+    default: () => []
+  }
 });
 
 const mainImage = ref(props.mainImage);
@@ -56,8 +67,12 @@ const changeMainImage = (image) => {
 const allImages = computed(() => [props.mainImage, ...props.additionalImages]);
 
 const maxVisibleImages = 3;
-const visibleImages = computed(() => allImages.value.slice(0, maxVisibleImages));
-const hiddenImageCount = computed(() => allImages.value.length - maxVisibleImages);
+const visibleImages = computed(() =>
+  allImages.value.slice(0, maxVisibleImages)
+);
+const hiddenImageCount = computed(
+  () => allImages.value.length - maxVisibleImages
+);
 </script>
 
 <style lang="scss">
@@ -71,10 +86,10 @@ const hiddenImageCount = computed(() => allImages.value.length - maxVisibleImage
     .product-card__color-options {
       display: none;
     }
-    
+
     .product-card__color-images {
       display: flex;
-      gap: 0.5rem
+      gap: 0.5rem;
     }
   }
 
@@ -112,7 +127,7 @@ const hiddenImageCount = computed(() => allImages.value.length - maxVisibleImage
       align-items: center;
       gap: 0.5rem;
       color: $color-medium-gray;
-      visibility: hidden; 
+      visibility: hidden;
     }
 
     &:hover {

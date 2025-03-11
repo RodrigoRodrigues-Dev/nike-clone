@@ -6,25 +6,26 @@
   </div>
   <div v-else>
     <div class="products-grid">
-      <ProductsCard 
-        v-for="item in visibleProducts" 
-        :key="item.productId" 
+      <ProductsCard
+        v-for="item in visibleProducts"
+        :key="item.productId"
         :mainImage="item.images.main"
-        :title="item.productName" 
-        :message="item.labels.ecoFriendly" 
+        :title="item.productName"
+        :message="item.labels.ecoFriendly"
         :subtitle="item.productDescription"
-        :additional-images="item.images.thumbnailImages" 
+        :additional-images="item.images.thumbnailImages"
         :colorOptions="`colors ${item.details.availableColors.length}`"
-        :price="`$${item.priceUSD}`" 
-        :promotion="item.discountLabel" 
+        :price="`$${item.priceUSD}`"
+        :promotion="item.discountLabel"
         :promo="item.promoLabel"
-        @click="goToProduct(item)" 
+        @click="goToProduct(item)"
       />
     </div>
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import { useFiltersStore } from './stores/filtersStore';
 import { useProductNavigation } from '~/composables/useProductNavigation';
 

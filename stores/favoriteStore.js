@@ -1,9 +1,9 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
-export const useFavoriteStore = defineStore("favorite", {
-    state: () => ({
-        items: [],
-        selectSizeItem: null,
-        isModalOpen: false
-    })
-})
+export const useFavoriteStore = defineStore('favorite', {
+  state: () => ({
+    items: [],
+    selectSizeItem: null,
+    isModalOpen: false
+  })
+});

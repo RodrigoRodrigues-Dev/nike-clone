@@ -16,7 +16,7 @@ export const useFiltersStore = defineStore('filters', {
       brandFilters: [],
       price: []
     },
-    products: [],
+    products: []
   }),
 
   actions: {
@@ -62,7 +62,7 @@ export const useFiltersStore = defineStore('filters', {
     },
     setSaleFilter(sale) {
       this.toggleFilter('saleFilters', sale);
-    },
+    }
   },
 
   getters: {
@@ -104,7 +104,8 @@ export const useFiltersStore = defineStore('filters', {
 
         filtered = filtered.filter(
           (item) =>
-            Number(item.priceUSD) >= minPrice && Number(item.priceUSD) <= maxPrice
+            Number(item.priceUSD) >= minPrice &&
+            Number(item.priceUSD) <= maxPrice
         );
       }
 
@@ -113,7 +114,7 @@ export const useFiltersStore = defineStore('filters', {
         const [selectedAgeRange] = state.selectedFilters.kidAgeFilters;
 
         const parseAgeRange = (range) => {
-          if (typeof range !== "string") return [0, Infinity];
+          if (typeof range !== 'string') return [0, Infinity];
 
           const match = range.match(/(\d+)\s*-\s*(\d+)/);
           if (match) {
@@ -131,9 +132,12 @@ export const useFiltersStore = defineStore('filters', {
         const [minAge, maxAge] = parseAgeRange(selectedAgeRange);
 
         filtered = filtered.filter((item) => {
-          return Array.isArray(item.details.kidsAge) && item.details.kidsAge.some((ageRange) => {
-            return ageRange.min <= maxAge && ageRange.max >= minAge;
-          });
+          return (
+            Array.isArray(item.details.kidsAge) &&
+            item.details.kidsAge.some((ageRange) => {
+              return ageRange.min <= maxAge && ageRange.max >= minAge;
+            })
+          );
         });
       }
 
@@ -149,21 +153,27 @@ export const useFiltersStore = defineStore('filters', {
       // Filter by gender
       if (state.selectedFilters.genderFilters.length > 0) {
         filtered = filtered.filter((item) =>
-          state.selectedFilters.genderFilters.includes(item.details.targetGender)
+          state.selectedFilters.genderFilters.includes(
+            item.details.targetGender
+          )
         );
       }
 
       // Filter by kids' gender
       if (state.selectedFilters.kidGenderFilters.length > 0) {
         filtered = filtered.filter((item) =>
-          state.selectedFilters.kidGenderFilters.includes(item.details.kidGender)
+          state.selectedFilters.kidGenderFilters.includes(
+            item.details.kidGender
+          )
         );
       }
 
       // Filter by activity type
       if (state.selectedFilters.activityTypeFilters.length > 0) {
         filtered = filtered.filter((item) =>
-          state.selectedFilters.activityTypeFilters.includes(item.details.activityType)
+          state.selectedFilters.activityTypeFilters.includes(
+            item.details.activityType
+          )
         );
       }
 
@@ -182,6 +192,6 @@ export const useFiltersStore = defineStore('filters', {
       }
 
       return filtered;
-    },
-  },
+    }
+  }
 });

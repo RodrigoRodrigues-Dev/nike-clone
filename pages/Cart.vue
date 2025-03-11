@@ -1,38 +1,51 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="cart">
     <template v-if="cartStore.items.length > 0 && !cartStore.purchaseCompleted">
       <!-- Cart Bag Section -->
       <div class="cart__bag">
         <h2 class="cart__bag-title">Bag</h2>
-        <div class="cart__bag-item" v-for="item in cartStore.items" :key="item.id">
+        <div
+          class="cart__bag-item"
+          v-for="item in cartStore.items"
+          :key="item.id"
+        >
           <div class="cart__bag-item-content">
             <div>
               <img class="cart__bag-item-image" :src="item.mainImage" alt="" />
               <div class="cart__bag-item-actions">
                 <div class="cart__bag-item-actions-quantity">
-                  <icon 
-                    name="tdesign:remove" 
-                    class="cart__bag-item-actions__btn" 
-                    :style="{ display: item.productAmount >= 2 ? 'block' : 'none' }"
-                    @click="removeProductAmount(item)" 
+                  <icon
+                    name="tdesign:remove"
+                    class="cart__bag-item-actions__btn"
+                    :style="{
+                      display: item.productAmount >= 2 ? 'block' : 'none'
+                    }"
+                    @click="removeProductAmount(item)"
                   />
-                  <icon 
-                    name="mi:delete" 
-                    class="cart__bag-item-actions__btn"  
-                    :style="{ display: item.productAmount < 2 ? 'block' : 'none' }"
-                    @click=removeProduct(item) 
+                  <icon
+                    name="mi:delete"
+                    class="cart__bag-item-actions__btn"
+                    :style="{
+                      display: item.productAmount < 2 ? 'block' : 'none'
+                    }"
+                    @click="removeProduct(item)"
                   />
                   {{ item.productAmount }}
                   <icon
-                    class="cart__bag-item-actions__btn" 
-                    name="material-symbols:add" 
-                    @click="addProductAmount(item)" 
+                    class="cart__bag-item-actions__btn"
+                    name="material-symbols:add"
+                    @click="addProductAmount(item)"
                   />
                 </div>
                 <div class="cart__bag-item-favorite">
-                  <icon 
-                    class="cart__bag-item-favorite-btn" 
-                    :name="item.markeHeartProduct ? 'mdi:cards-heart' : 'material-symbols:favorite-outline'" 
+                  <icon
+                    class="cart__bag-item-favorite-btn"
+                    :name="
+                      item.markeHeartProduct
+                        ? 'mdi:cards-heart'
+                        : 'material-symbols:favorite-outline'
+                    "
                     @click="addToFavorite(item)"
                   />
                 </div>
@@ -43,16 +56,23 @@
                 <h1 class="cart__bag-item-title">{{ item.name }}</h1>
                 <span class="cart__bag-item-subtitle">{{ item.subTitle }}</span>
                 <span class="cart__bag-item-colors">{{ item.colors }}</span>
-                <span class="cart__bag-item-size">Size <span class="blink">{{ item.size }}</span></span>
+                <span class="cart__bag-item-size"
+                  >Size <span class="blink">{{ item.size }}</span></span
+                >
               </div>
               <span class="cart__bag-item-price">${{ item.price }}.00</span>
             </div>
           </div>
-          <p class="cart__already-exists" v-if="item.productAddFav">This product (same color) is already in your favorite</p>
+          <p class="cart__already-exists" v-if="item.productAddFav">
+            This product (same color) is already in your favorite
+          </p>
           <div class="cart__bag-item-shipping">
             <div class="cart__bag-item-shipping-top">
               <span>Shipping</span>
-              <span>Arrives by Mon, Dec 23 to <span class="blink">90012</span></span>
+              <span
+                >Arrives by Mon, Dec 23 to
+                <span class="blink">90012</span></span
+              >
             </div>
             <div class="cart__bag-item-shipping-bottom">
               <span>Free Pickup</span>
@@ -66,13 +86,20 @@
       <div class="cart__summary">
         <div class="cart__summary-header" @click="toggleSummary">
           <h2 class="cart__summary-title">Summary</h2>
-          <icon name="material-symbols-light:keyboard-arrow-down-rounded" class="cart__summary-icon" size="20px"/>
+          <icon
+            name="material-symbols-light:keyboard-arrow-down-rounded"
+            class="cart__summary-icon"
+            size="20px"
+          />
         </div>
         <div class="cart__summary-content">
           <div class="cart__summary-subtotal">
             <div class="cart__summary-subtotal-header">
               <h4 class="cart__summary-label">Subtotal</h4>
-              <icon class="cart__summary-info-icon" name="mingcute:question-fill"></icon>
+              <icon
+                class="cart__summary-info-icon"
+                name="mingcute:question-fill"
+              ></icon>
             </div>
             <p class="cart__summary-amount">${{ sumWithInitial }}.00</p>
           </div>
@@ -85,7 +112,10 @@
           <div class="cart__summary-tax">
             <div class="cart__summary-tax-header">
               <h4>Estimated Tax</h4>
-              <icon class="cart__summary-info-icon" name="mingcute:question-fill"></icon>
+              <icon
+                class="cart__summary-info-icon"
+                name="mingcute:question-fill"
+              ></icon>
             </div>
             <p>—</p>
           </div>
@@ -97,32 +127,48 @@
         </div>
         <div class="cart__separator"></div>
         <div class="progress-bar-container">
-          <div class="progress-bar" id="progress-bar" :style="{ width: progressWidth }"></div>
+          <div
+            class="progress-bar"
+            id="progress-bar"
+            :style="{ width: progressWidth }"
+          ></div>
         </div>
         <div class="cart__summary-member">
           <p>
             Members get free shipping on orders $50.00+
-            <span class="blink">Join us</span> or <span class="blink">Sign-in</span>
+            <span class="blink">Join us</span> or
+            <span class="blink">Sign-in</span>
           </p>
         </div>
         <div class="cart__summary-btns">
-          <button class="cart__summary-btn cart__summary-btn--check" @click="toggleFinalizePurchase">Checkout</button>
+          <button
+            class="cart__summary-btn cart__summary-btn--check"
+            @click="toggleFinalizePurchase"
+          >
+            Checkout
+          </button>
           <button class="cart__summary-btn cart__summary-btn--paypal">
-            <img src="https://www.nike.com/assets/experience/pet/payment-icons/paypal@2x.png" alt="PayPal">
+            <img
+              src="https://www.nike.com/assets/experience/pet/payment-icons/paypal@2x.png"
+              alt="PayPal"
+            />
           </button>
         </div>
       </div>
       <!-- Cart Favorite Section -->
       <div class="cart__favorite">
         <h4 class="cart__favorite-title">Favorites</h4>
-        <p>Want to view your favorites?
+        <p>
+          Want to view your favorites?
           <RouterLink to="/Favorites">
             <span class="blink">Check</span>
           </RouterLink>
         </p>
       </div>
     </template>
-    <template v-if="cartStore.items.length === 0 && !cartStore.purchaseCompleted">
+    <template
+      v-if="cartStore.items.length === 0 && !cartStore.purchaseCompleted"
+    >
       <div class="cart__empty">
         <h1 class="cart__empty-title">Your cart is empty</h1>
         <p class="cart__empty-description">
@@ -140,7 +186,9 @@
           Your purchase has been completed successfully.
         </p>
         <RouterLink to="/Releases" class="cart__complete-link">
-          <button class="cart__complete-button" @click="toggleFinalizePurchase">Continue Shopping</button>
+          <button class="cart__complete-button" @click="toggleFinalizePurchase">
+            Continue Shopping
+          </button>
         </RouterLink>
       </div>
     </template>
@@ -149,10 +197,12 @@
 </template>
 
 <script setup>
+// eslint-disable-next-line no-undef
 definePageMeta({
-  layout: 'custom',
+  layout: 'custom'
 });
 
+import { computed } from 'vue';
 import { useFavoriteStore } from '~/stores/favoriteStore';
 import { RouterLink } from 'vue-router';
 import { useCartStore } from '~/stores/cartStore';
@@ -170,10 +220,12 @@ const addToFavorite = (item) => {
     colors: item.colors,
     size: item.size,
     sizes: item.sizes,
-    productAmount: item.productAmount,
-  }
+    productAmount: item.productAmount
+  };
 
-  const productAlreadyExists = favoriteStore.items.some((product) => product.mainImage === item.mainImage);
+  const productAlreadyExists = favoriteStore.items.some(
+    (product) => product.mainImage === item.mainImage
+  );
 
   if (productAlreadyExists) {
     item.productAddFav = true;
@@ -183,7 +235,7 @@ const addToFavorite = (item) => {
 
   item.markeHeartProduct = true;
   favoriteStore.items.unshift(productData);
-}
+};
 
 const initializeOriginalPrice = (item) => {
   if (!item.originalPrice) {
@@ -201,7 +253,7 @@ const toggleFinalizePurchase = () => {
   setTimeout(() => {
     cartStore.purchaseCompleted = false;
   }, 3500);
-}
+};
 
 const toggleSummary = () => {
   const summaryContent = document.querySelector('.cart__summary-content');
@@ -244,7 +296,9 @@ const progressWidth = computed(() => {
 });
 
 const updateMarkeHeartProduct = (item) => {
-  const productExists = favoriteStore.items.some((product) => product.mainImage === item.mainImage);
+  const productExists = favoriteStore.items.some(
+    (product) => product.mainImage === item.mainImage
+  );
   if (productExists) {
     item.markeHeartProduct = true;
   } else {
@@ -379,7 +433,6 @@ cartStore.items.forEach((item) => {
       }
 
       &-shipping {
-
         &-top,
         &-bottom {
           display: flex;

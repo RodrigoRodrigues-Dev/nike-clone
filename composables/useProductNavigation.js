@@ -9,7 +9,7 @@ export function useProductNavigation() {
     productStore.setProductProperties(item);
     router.push({
       name: 'Releases-name',
-      params: { name: item.productName },
+      params: { name: item.productName }
     });
   };
 

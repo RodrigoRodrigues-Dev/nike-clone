@@ -16,7 +16,7 @@ export const useSearchResults = defineStore('searchResults', {
 
       if (this.showSearchResults) {
         window.scrollTo({
-          top: 0,
+          top: 0
         });
       }
 
@@ -32,11 +32,13 @@ export const useSearchResults = defineStore('searchResults', {
   getters: {
     resultSearch(state) {
       if (state.debouncedValueInput && state.debouncedValueInput.trim()) {
-        return state.products.filter(item =>
-          item.productName.toLowerCase().includes(state.debouncedValueInput.toLowerCase())
+        return state.products.filter((item) =>
+          item.productName
+            .toLowerCase()
+            .includes(state.debouncedValueInput.toLowerCase())
         );
       }
       return [];
-    },
-  },
+    }
+  }
 });
