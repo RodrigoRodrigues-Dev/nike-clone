@@ -50,9 +50,9 @@ Aqui estão as principais tecnologias utilizadas neste projeto:
 1. **Clone o repositório:**
 
 ```sh
-git clone https://github.com/RodrigoRodrigues-Dev/NikeVibeShop.git
+git clone https://github.com/RodrigoRodrigues-Dev/nike-vibe-shop.git
 
-cd NikeVibeShop
+cd nike-vibe-shop
 ```
 
 2. **Instale as dependências:**
