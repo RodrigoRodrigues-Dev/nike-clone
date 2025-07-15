@@ -1,10 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <AppDownloadBanner />
-  <NewsSection />
-  <ReleasesBanner />
-  <ClassicsSlider />
-  <MegaMenu />
+  <SectionsAppDownloadBanner />
+  <SectionsNewsSection />
+  <SectionsReleasesBanner />
+  <SectionsClassicsSlider />
+  <LayoutMegaMenu />
 </template>
 
 <script setup></script>

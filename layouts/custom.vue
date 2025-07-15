@@ -1,13 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
-    <TopNavigation />
-    <Header />
-    <OfferCarousel />
+    <LayoutTopNavigation />
+    <LayoutHeader />
+    <CommonOfferCarousel />
     <main>
       <slot />
     </main>
-    <Footer />
-    <SearchResults />
+    <LayoutFooter />
+    <UiSearchResults />
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="releases-banner">
+  <section class="releases-banner">
     <div class="container">
       <div class="releases-banner__content">
         <h4 class="releases-banner__sub-title">Just It</h4>
@@ -28,7 +28,7 @@
         />
       </picture>
     </div>
-  </div>
+  </section>
 </template>
 
 <style lang="scss">

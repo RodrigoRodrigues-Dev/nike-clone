@@ -1,5 +1,5 @@
 <template>
-  <div class="classics">
+  <section class="classics">
     <h2 class="classics__title">Shop By Classics</h2>
     <div class="classics__slide-content">
       <!-- Slider para desktop (acima de 960px) -->
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>

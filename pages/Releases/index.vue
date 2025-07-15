@@ -1,10 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="releases">
-    <ResultsHeader />
+    <UiResultsHeader />
     <div class="releases__content">
-      <SidebarFilters v-show="showFilters" />
-      <ProductsGrid />
+      <UiSidebarFilters v-show="showFilters" />
+      <LayoutProductsGrid />
     </div>
   </div>
 </template>

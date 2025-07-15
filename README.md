@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <img src=".github/Preview Home.png" width="100%" />
+  <img src=".github/assets/images/Preview Home.png" width="100%" />
 </p>
 
 O Nike Vibe Shop é uma aplicação Nuxt.js que permite aos usuários explorar e comprar produtos da marca Nike. A aplicação oferece uma interface intuitiva para navegar por diferentes categorias de produtos, visualizar detalhes dos produtos e gerenciar o carrinho de compras.
@@ -67,7 +67,7 @@ npm install
 A seção de lançamentos permite aos usuários visualizar os produtos mais recentes adicionados à loja. Os usuários podem filtrar os lançamentos por categoria, ordenar por preço e buscar produtos específicos.
 
 <p align="center">
-  <img src=".github/Preview Releases.png" width="100%" />
+  <img src=".github/assets/images/Preview Releases.png" width="100%" />
 </p>
 
 ## 🛍️ Visualização de Produtos
@@ -75,7 +75,7 @@ A seção de lançamentos permite aos usuários visualizar os produtos mais rece
 A seção de visualização de produtos permite aos usuários ver os detalhes dos produtos, incluindo imagens, descrições e preços. Os usuários podem adicionar produtos ao carrinho diretamente desta seção.
 
 <p align="center">
-  <img src=".github/Preview Product.png" width="100%" />
+  <img src=".github/assets/images/Preview Product.png" width="100%" />
 </p>
 
 ## ❤️ Visualização de Favoritos
@@ -83,7 +83,7 @@ A seção de visualização de produtos permite aos usuários ver os detalhes do
 A seção de visualização de favoritos permite aos usuários ver os produtos que marcaram como favoritos. Os usuários podem gerenciar seus itens favoritos e adicionar produtos ao carrinho diretamente desta seção.
 
 <p align="center">
-  <img src=".github/Preview Favorites.png" width="100%" />
+  <img src=".github/assets/images/Preview Favorites.png" width="100%" />
 </p>
 
 ## 🛒 Visualização do Carrinho
@@ -91,7 +91,7 @@ A seção de visualização de favoritos permite aos usuários ver os produtos q
 A seção de visualização do carrinho permite aos usuários ver os produtos que adicionaram ao carrinho, ajustar quantidades e proceder para a finalização da compra.
 
 <p align="center">
-  <img src=".github/Preview Cart.png" width="100%" />
+  <img src=".github/assets/images/Preview Cart.png" width="100%" />
 </p>
 
 ## 📃 Licença

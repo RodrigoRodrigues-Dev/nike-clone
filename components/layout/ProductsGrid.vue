@@ -6,7 +6,7 @@
   </div>
   <div v-else>
     <div class="products-grid">
-      <ProductsCard
+      <UiProductsCard
         v-for="item in visibleProducts"
         :key="item.productId"
         :mainImage="item.images.main"

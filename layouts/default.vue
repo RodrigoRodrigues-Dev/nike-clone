@@ -1,14 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
-    <TopNavigation />
-    <Header />
-    <CategoryCarousel />
-    <DiscountBanner />
+    <LayoutTopNavigation />
+    <LayoutHeader />
+    <CommonCategoryCarousel />
+    <CommonDiscountBanner />
     <main>
       <slot />
     </main>
-    <Footer />
-    <SearchResults />
+    <LayoutFooter />
+    <UiSearchResults />
   </div>
 </template>

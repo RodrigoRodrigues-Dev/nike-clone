@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <section class="container">
     <div class="appDownload">
       <picture>
         <source
@@ -14,7 +14,7 @@
         />
       </picture>
     </div>
-  </div>
+  </section>
 </template>
 
 <style lang="scss">

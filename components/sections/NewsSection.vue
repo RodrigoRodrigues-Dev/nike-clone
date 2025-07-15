@@ -1,5 +1,5 @@
 <template>
-  <div class="news-section">
+  <section class="news-section">
     <div class="container">
       <div class="news-section__content">
         <h2 class="news-section__title">New This Week</h2>
@@ -12,7 +12,7 @@
         alt=""
       />
     </div>
-  </div>
+  </section>
 </template>
 
 <style lang="scss">

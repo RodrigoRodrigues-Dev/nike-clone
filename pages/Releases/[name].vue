@@ -156,8 +156,8 @@
       </div>
     </div>
 
-    <ProductHighlight />
-    <PopupItem />
+    <LayoutProductHighlight />
+    <CommonPopupItem />
   </client-only>
 </template>
 
@@ -171,7 +171,6 @@ import { ref, computed } from 'vue';
 import { useProductStore } from '@/stores/productStore';
 import { useFavoriteStore } from '~/stores/favoriteStore';
 import { useCart } from '~/composables/useCart';
-import ProductHighlight from '~/components/ProductHighlight.vue';
 
 const productStore = useProductStore();
 const favoriteStore = useFavoriteStore();

@@ -47,8 +47,8 @@
       </RouterLink>
     </div>
   </div>
-  <FavoritesModal />
-  <PopupItem />
+  <CommonFavoritesModal />
+  <CommonPopupItem />
 </template>
 
 <script setup>

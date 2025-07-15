@@ -193,7 +193,7 @@
       </div>
     </template>
   </div>
-  <PopupItem />
+  <CommonPopupItem />
 </template>
 
 <script setup>
