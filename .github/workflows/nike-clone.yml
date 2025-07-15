@@ -1,0 +1,53 @@
+name: Cypress Tests - Nike Clone Project
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/**'
+      - 'nike-clone/**/*.js'
+      - 'nike-clone/**/*.ts'
+      - 'nike-clone/**/*.css'
+      - 'nike-clone/**/*.scss'
+      - 'nike-clone/**/*.html'
+      - 'nike-clone/**/*.vue'
+      - 'nike-clone/**/*.json'
+      - 'nike-clone/**/*.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'nike-clone/**/*.js'
+      - 'nike-clone/**/*.ts'
+      - 'nike-clone/**/*.css'
+      - 'nike-clone/**/*.scss'
+      - 'nike-clone/**/*.html'
+      - 'nike-clone/**/*.vue'
+      - 'nike-clone/**/*.json'
+      - 'nike-clone/**/*.yml'
+  workflow_dispatch:
+
+jobs:
+  nike-clone-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - run: npm ci
+        working-directory: .
+
+      - run: npm run cypress:headless
+        working-directory: .
+
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-artifacts
+          path: |
+            cypress/screenshots/**/*.png
+            cypress/videos/**/*.mp4
