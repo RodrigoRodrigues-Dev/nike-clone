@@ -25,7 +25,11 @@
       <h3>Added to Favorite</h3>
     </div>
     <div class="popupItem__infos">
-      <img :src="firstItem.mainImage" class="popupItem__image" />
+      <NuxtImg
+        class="popupItem__image"
+        :src="firstItem.mainImage"
+        format="webp"
+      />
       <div class="popupItem__infos-content">
         <span>{{ firstItem.name }}</span>
         <span class="popupItem__infos-subTitle">{{ firstItem.subTitle }}</span>

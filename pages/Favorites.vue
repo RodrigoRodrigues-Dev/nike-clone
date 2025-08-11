@@ -16,10 +16,11 @@
             >
               <icon class="favorites__item-icon" name="ic:round-favorite" />
             </div>
-            <img
+            <NuxtImg
               class="favorites__item-image"
               :src="item.mainImage"
               alt="Favorite item image"
+              format="webp"
             />
           </div>
           <div class="favorites__item-info">

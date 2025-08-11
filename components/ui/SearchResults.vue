@@ -4,10 +4,11 @@
     <div class="search-results">
       <div class="search-results__container">
         <RouterLink to="/" @click="searchResults.toggleSearchResults">
-          <img
+          <NuxtImg
             class="search-results__logo"
             src="https://nike-vibe-shop-images.vercel.app/nike-logo.png"
             alt="Logo da Nike"
+            format="webp"
           />
         </RouterLink>
         <div class="search-results__search">
@@ -78,10 +79,11 @@
               :key="index"
               @click="(goToProduct(item), searchResults.toggleSearchResults())"
             >
-              <img
+              <NuxtImg
+                class="search-results__products-card__image"
                 :src="item.images.main"
                 alt=""
-                class="search-results__products-card__image"
+                format="webp"
               />
               <p class="search-results__products-card__title">
                 {{ item.productName }}

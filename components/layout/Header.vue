@@ -3,10 +3,12 @@
   <header class="header">
     <div class="header__container">
       <RouterLink to="/">
-        <img
-          class="header__logo"
-          src="https://nike-vibe-shop-images.vercel.app/nike-logo.png"
+        <NuxtImg
+          provider="cloudinary"
+          format="webp"
           alt="Logo da Nike"
+          src="v1755015974/Nike%20Clone/assets/nike-logo_exj6np.png"
+          class="header__logo"
         />
       </RouterLink>
       <h3 class="header__title">just do it</h3>

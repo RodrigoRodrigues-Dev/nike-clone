@@ -8,10 +8,11 @@
         @click="favoriteStore.isModalOpen = false"
       />
       <div class="favorites-modal__mobile-container">
-        <img
+        <NuxtImg
           class="favorites-modal__image"
           :src="favoriteStore.selectSizeItem.mainImage"
           alt="Favorite item image"
+          format="webp"
         />
         <div class="favorites-modal__info-text-mobile">
           <p class="favorites-modal__info-mobile-subtitle">

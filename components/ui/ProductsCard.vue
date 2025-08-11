@@ -1,9 +1,10 @@
 <template>
   <div class="product-card">
-    <img
+    <NuxtImg
+      class="product-card__image"
       :src="mainImage"
       alt="NikeCourt Zoom Vapor Cage 4 Rafa"
-      class="product-card__image"
+      format="webp"
     />
 
     <div class="product-card__details">
@@ -18,10 +19,11 @@
           :key="index"
           @mouseover="changeMainImage(image)"
         >
-          <img
+          <NuxtImg
+            class="product-card__additional-image"
             :src="image"
             :alt="'Image ' + (index + 1)"
-            class="product-card__additional-image"
+            format="webp"
           />
         </div>
 

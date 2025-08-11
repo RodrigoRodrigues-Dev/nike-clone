@@ -1,10 +1,12 @@
 <template>
   <div class="mega-menu">
     <div class="mega-menu__main">
-      <img
-        class="mega-menu__logo"
-        src="https://nike-vibe-shop-images.vercel.app/nike-logo.png"
+      <NuxtImg
+        provider="cloudinary"
+        format="webp"
         alt="Nike logo"
+        src="v1755015974/Nike%20Clone/assets/nike-logo_exj6np.png"
+        class="mega-menu__logo"
       />
       <ul class="mega-menu__nav-links">
         <li class="mega-menu__nav-link">Find a Store</li>

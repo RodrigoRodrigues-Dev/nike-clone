@@ -2,13 +2,15 @@
   <div class="top-navigation">
     <div class="top-navigation__container">
       <div class="top-navigation__logo">
-        <img
+        <NuxtImg
           src="https://nike-vibe-shop-images.vercel.app/icons/jordan.svg"
           alt="logo Air Jordan"
+          format="webp"
         />
-        <img
+        <NuxtImg
           src="https://nike-vibe-shop-images.vercel.app/icons/snkrs.svg"
           alt="logo SNKRS"
+          format="webp"
         />
       </div>
       <div class="top-navigation__menu">

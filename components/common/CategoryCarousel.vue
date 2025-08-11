@@ -7,9 +7,11 @@
         class="category-carousel__slide"
         :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
       >
-        <img
-          :src="slide.image"
+        <NuxtImg
+          provider="cloudinary"
+          format="webp"
           :alt="slide.alt"
+          :src="slide.image"
           class="category-carousel__image"
         />
         <h2 class="category-carousel__title">{{ slide.title }}</h2>
@@ -44,13 +46,14 @@ import { useAutoSlide } from '@/composables/useAutoSlide';
 const slides = ref([
   {
     image:
-      'https://nike-vibe-shop-images.vercel.app/icons/icon_release_shoes.png',
+      'v1755016414/Nike%20Clone/Home/Category%20Carousel/icon_release_shoes_ucfyne.png',
     title: 'RUNNING SHOES',
     description: 'Find your ideal sneaker.',
     alt: 'Running Shoes'
   },
   {
-    image: 'https://nike-vibe-shop-images.vercel.app/icons/gift_card.png',
+    image:
+      'v1755016414/Nike%20Clone/Home/Category%20Carousel/gift_card_c1o4c1.png',
     title: 'GIFT CARD',
     description: 'for last minute gifts.',
     alt: 'Gift Card'

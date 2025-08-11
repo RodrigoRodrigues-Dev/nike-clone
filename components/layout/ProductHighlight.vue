@@ -7,7 +7,12 @@
     >
       <h2 class="product-highlight__title">{{ item.title }}</h2>
       <p class="product-highlight__text">{{ item.text }}</p>
-      <img class="product-highlight__image" :src="item.image" alt="" />
+      <NuxtImg
+        class="product-highlight__image"
+        :src="item.image"
+        alt=""
+        format="webp"
+      />
     </div>
   </div>
 </template>

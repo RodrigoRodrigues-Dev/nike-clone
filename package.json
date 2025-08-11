@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@nuxt/icon": "^1.7.2",
+    "@nuxt/image": "^1.11.0",
     "axios": "^1.7.7",
     "cypress": "^14.5.1",
     "lodash.debounce": "^4.0.8",

@@ -7,9 +7,12 @@
       </div>
     </div>
     <div class="news-section__image">
-      <img
-        src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/h_2291,c_limit/90dfcb34-49fe-4f36-a631-23ef81bbcfd2/sitio-web-oficial-de-nike.jpg"
+      <NuxtImg
+        provider="cloudinary"
+        format="webp"
+        src="v1755008443/Nike%20Clone/Home/sitio-web-oficial-de-nike_o5exk0.avif"
         alt="Banner Image"
+        class="banner-image"
       />
     </div>
   </section>
@@ -37,8 +40,10 @@
   }
 
   &__image {
-    img {
+    .banner-image {
       width: 100%;
+      height: auto;
+      object-fit: cover;
     }
   }
 }

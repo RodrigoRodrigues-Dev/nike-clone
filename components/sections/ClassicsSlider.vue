@@ -16,14 +16,30 @@
           v-for="(shoe, index) in loopedShoes"
           :key="index"
         >
-          <img class="classics__image" :src="shoe.img" alt="Shoe Image" />
+          <NuxtImg
+            provider="cloudinary"
+            format="webp"
+            :src="shoe.img"
+            width="225"
+            height="300"
+            class="classics__image"
+            alt="Shoe Image"
+          />
         </div>
       </div>
 
       <!-- Slider para dispositivos móveis (abaixo de 960px) -->
       <div class="classics__slide classics__slide--mobile">
         <div class="classics__shoe" v-for="(shoe, index) in shoes" :key="index">
-          <img class="classics__image" :src="shoe.img" alt="Shoe Image" />
+          <NuxtImg
+            provider="cloudinary"
+            format="webp"
+            :src="shoe.img"
+            width="343"
+            height="457"
+            class="classics__image"
+            alt="Shoe Image"
+          />
         </div>
       </div>
 
@@ -45,25 +61,25 @@ import { ref, computed, onMounted } from 'vue';
 
 const shoes = [
   {
-    img: 'https://nike-vibe-shop-images.vercel.app/slides/shoes/shoe-cortez.jpg'
+    img: 'v1755016741/Nike%20Clone/Home/Classics%20Slider/shoe-cortez_ziodxk.webp'
   },
   {
-    img: 'https://nike-vibe-shop-images.vercel.app/slides/shoes/shoe-air-max.jpg'
+    img: 'v1755016800/Nike%20Clone/Home/Classics%20Slider/shoe-air-max_rjmhvu.webp'
   },
   {
-    img: 'https://nike-vibe-shop-images.vercel.app/slides/shoes/shoe-blazer.jpg'
+    img: 'v1755016832/Nike%20Clone/Home/Classics%20Slider/shoe-blazer_ahlj15.webp'
   },
   {
-    img: 'https://nike-vibe-shop-images.vercel.app/slides/shoes/shoe-air-jordan-1.jpg'
+    img: 'v1755016868/Nike%20Clone/Home/Classics%20Slider/shoe-air-jordan-1_siqiky.webp'
   },
   {
-    img: 'https://nike-vibe-shop-images.vercel.app/slides/shoes/shoe-dunk.jpg'
+    img: 'v1755016912/Nike%20Clone/Home/Classics%20Slider/shoe-dunk_d9pouv.webp'
   },
   {
-    img: 'https://nike-vibe-shop-images.vercel.app/slides/shoes/shoe-air-force-1.jpg'
+    img: 'v1755016941/Nike%20Clone/Home/Classics%20Slider/shoe-air-force-1_zb5gax.webp'
   },
   {
-    img: 'https://nike-vibe-shop-images.vercel.app/slides/shoes/shoe-vomero.jpg'
+    img: 'v1755016970/Nike%20Clone/Home/Classics%20Slider/shoe-vomero_vzbj62.webp'
   }
 ];
 

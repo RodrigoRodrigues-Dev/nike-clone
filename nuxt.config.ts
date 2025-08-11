@@ -5,6 +5,13 @@ export default defineNuxtConfig({
   components: true,
   css: ['~/assets/scss/main.scss'],
 
+  image: {
+    cloudinary: {
+      baseURL: 'https://res.cloudinary.com/dbs7ev5az/image/upload/',
+      format: 'webp'
+    }
+  },
+
   app: {
     head: {
       htmlAttrs: {
@@ -30,7 +37,7 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@nuxt/icon'],
+  modules: ['@nuxt/icon', '@nuxt/image'],
   plugins: [
     '~/plugins/pinia.js'
   ]

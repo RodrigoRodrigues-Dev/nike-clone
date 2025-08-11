@@ -17,19 +17,22 @@
       </div>
     </div>
     <div class="releases-banner__image">
-      <picture>
-        <source
-          media="(max-width: 930px)"
-          srcset="
-            https://www.nike.qa/dw/image/v2/BDVB_PRD/on/demandware.static/-/Library-Sites-NikeSharedLibrary/default/dw01498204/2024/10/Women/WLP%20P1_img_MB-min.jpg?q=80
-          "
-          alt="Nike release image for mobile"
-        />
-        <img
-          src="https://www.nike.qa/dw/image/v2/BDVB_PRD/on/demandware.static/-/Library-Sites-NikeSharedLibrary/default/dw2a0e2b47/2024/10/Women/WLP%20P1_img_DT-min.jpg?q=80"
-          alt="Nike release image"
-        />
-      </picture>
+      <!-- Image Desktop -->
+      <NuxtImg
+        provider="cloudinary"
+        format="webp"
+        alt="Nike release image"
+        src="v1754946307/Nike%20Clone/Home/WLP_P1_img_DT-min_v8muv6.jpg"
+        class="banner-desktop"
+      />
+      <!-- Image Mobile -->
+      <NuxtImg
+        provider="cloudinary"
+        format="webp"
+        alt="Nike release image"
+        src="v1754946774/Nike%20Clone/Home/WLP_P1_img_MB-min_eubnri.jpg"
+        class="banner-mobile"
+      />
     </div>
   </section>
 </template>
@@ -109,9 +112,25 @@
   &__image {
     margin-top: 85px;
 
+    .banner-desktop {
+      display: block;
+    }
+    .banner-mobile {
+      display: none;
+    }
+
     img {
       width: 100%;
     }
+  }
+}
+
+@media (max-width: 1024px) {
+  .releases-banner__image .banner-desktop {
+    display: none;
+  }
+  .releases-banner__image .banner-mobile {
+    display: block;
   }
 }
 </style>
