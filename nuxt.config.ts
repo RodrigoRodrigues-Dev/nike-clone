@@ -5,6 +5,18 @@ export default defineNuxtConfig({
   components: true,
   css: ['~/assets/scss/main.scss'],
 
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: 'pt-BR'
+      },
+      title: 'Nike Clone',
+      meta: [
+        { name: 'description', content: 'Website created as a personal project, intended to be a clone of the Nike website.' }
+      ]
+    }
+  },
+
   vite: {
     css: {
       preprocessorOptions: {

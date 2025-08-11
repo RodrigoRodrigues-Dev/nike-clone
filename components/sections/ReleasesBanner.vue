@@ -2,7 +2,7 @@
   <section class="releases-banner">
     <div class="container">
       <div class="releases-banner__content">
-        <h4 class="releases-banner__sub-title">Just It</h4>
+        <h3 class="releases-banner__sub-title">Just It</h3>
         <h2 class="releases-banner__title">Releases</h2>
         <p class="releases-banner__description">
           Explore the latest Nike collection, where style meets performance.
@@ -10,7 +10,9 @@
           support, ready for any adventure, in any weather.
         </p>
         <RouterLink to="/Releases">
-          <button class="releases-banner__btn">Releases</button>
+          <button class="releases-banner__btn" aria-label="Releases Page">
+            Releases
+          </button>
         </RouterLink>
       </div>
     </div>
@@ -21,6 +23,7 @@
           srcset="
             https://www.nike.qa/dw/image/v2/BDVB_PRD/on/demandware.static/-/Library-Sites-NikeSharedLibrary/default/dw01498204/2024/10/Women/WLP%20P1_img_MB-min.jpg?q=80
           "
+          alt="Nike release image for mobile"
         />
         <img
           src="https://www.nike.qa/dw/image/v2/BDVB_PRD/on/demandware.static/-/Library-Sites-NikeSharedLibrary/default/dw2a0e2b47/2024/10/Women/WLP%20P1_img_DT-min.jpg?q=80"

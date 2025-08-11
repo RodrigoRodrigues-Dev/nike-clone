@@ -18,9 +18,9 @@
           v-for="(section, index) in sections"
           :key="index"
         >
-          <h4 class="mega-menu__section-title" @click="toggleList">
+          <h3 class="mega-menu__section-title" @click="toggleList">
             {{ section.title }}
-          </h4>
+          </h3>
           <ul class="mega-menu__list">
             <li
               v-for="(item, index) in section.items"

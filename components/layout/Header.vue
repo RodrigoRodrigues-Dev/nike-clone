@@ -13,7 +13,7 @@
       <div class="header__menu">
         <div class="header__search" @click="searchResults.toggleSearchResults">
           <div class="header__search-icon-container">
-            <button class="header__search-button">
+            <button class="header__search-button" aria-label="Search Products">
               <icon class="header__search-icon" name="clarity:search-line" />
             </button>
           </div>
@@ -27,12 +27,12 @@
             inputmode="search"
           />
         </div>
-        <RouterLink to="/Favorites">
+        <RouterLink to="/Favorites" aria-label="Favorites">
           <div class="header__menu-icon-container">
             <icon class="header__menu-icon" name="ic:sharp-favorite-border" />
           </div>
         </RouterLink>
-        <RouterLink to="/Cart">
+        <RouterLink to="/Cart" aria-label="Cart">
           <div class="header__menu-icon-container">
             <icon class="header__menu-icon" name="solar:bag-3-broken" />
             <p>{{ cartStore.items.length }}</p>

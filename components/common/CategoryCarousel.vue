@@ -45,13 +45,15 @@ const slides = ref([
   {
     image:
       'https://nike-vibe-shop-images.vercel.app/icons/icon_release_shoes.png',
-    title: 'TÊNIS DE CORRIDA',
-    description: 'Encontre o seu tênis ideal.'
+    title: 'RUNNING SHOES',
+    description: 'Find your ideal sneaker.',
+    alt: 'Running Shoes'
   },
   {
     image: 'https://nike-vibe-shop-images.vercel.app/icons/gift_card.png',
-    title: 'CARTÃO PRESENTE',
-    description: 'para presentes de última hora.'
+    title: 'GIFT CARD',
+    description: 'for last minute gifts.',
+    alt: 'Gift Card'
   }
 ]);
 

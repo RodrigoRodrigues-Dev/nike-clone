@@ -3,7 +3,8 @@
     src: url('/fonts/FuturaNdForNike/futura-nd-for-nike-365-cn-xbd.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-}  
+    font-display: swap;
+}
 
 @font-face {
     font-family: 'Helvetica Now Text Regular';
@@ -12,6 +13,7 @@
          url('/fonts/HelveticaNowText/HelveticaNowText-RegIta.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -21,6 +23,7 @@
          url('/fonts/HelveticaNowText/HelveticaNowText-Medium.ttf') format('truetype');
     font-weight: medium;
     font-style: normal;
+    font-display: swap;
 }
 
 
@@ -31,4 +34,5 @@
          url('/fonts/HelveticaNowText/HelveticaNowText-Black.ttf') format('truetype');
     font-weight: 900;
     font-style: normal;
+    font-display: swap;
 }

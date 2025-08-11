@@ -7,6 +7,7 @@
           srcset="
             https://nike-vibe-shop-images.vercel.app/banners/App/app%20download%20tout%20mob.png
           "
+          alt="Download do App for Mobile"
         />
         <img
           src="https://nike-vibe-shop-images.vercel.app/banners/App/app%20download%20tout%20desk.png"
