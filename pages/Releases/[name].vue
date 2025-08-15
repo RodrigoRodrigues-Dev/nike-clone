@@ -9,14 +9,16 @@
             v-for="image in productStore.selectedGallery[indexImage]"
             :key="image"
           >
-            <img
-              class="product-view__gallery-image"
-              :class="{
-                'product-view__gallery-image--active': mainImage === image
-              }"
+            <NuxtImg
+              provider="cloudinary"
+              format="webp"
               @mouseover="changeMainImageGallery(image)"
               :src="image"
               alt="Gallery image"
+              :class="{
+                'product-view__gallery-image--active': mainImage === image
+              }"
+              class="product-view__gallery-image"
             />
           </div>
         </div>
@@ -24,7 +26,12 @@
 
       <!-- Main Image Section -->
       <div class="product-view__main-image">
-        <img :src="mainImage" alt="Main image" />
+        <NuxtImg
+          provider="cloudinary"
+          format="webp"
+          :src="mainImage"
+          alt="Main image"
+        />
       </div>
 
       <!-- Product Info Section -->
@@ -44,7 +51,9 @@
 
         <!-- Thumbnails Section -->
         <div class="product-view__thumbnails">
-          <img
+          <NuxtImg
+            provider="cloudinary"
+            format="webp"
             v-for="(image, index) in productStore.additionalImages"
             :key="index"
             :src="image"

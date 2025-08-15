@@ -5,10 +5,11 @@
       <div class="search-results__container">
         <RouterLink to="/" @click="searchResults.toggleSearchResults">
           <NuxtImg
-            class="search-results__logo"
+            provider="cloudinary"
+            format="webp"
             src="https://nike-vibe-shop-images.vercel.app/nike-logo.png"
             alt="Logo da Nike"
-            format="webp"
+            class="search-results__logo"
           />
         </RouterLink>
         <div class="search-results__search">

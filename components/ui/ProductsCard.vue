@@ -1,10 +1,11 @@
 <template>
   <div class="product-card">
     <NuxtImg
-      class="product-card__image"
+      provider="cloudinary"
+      format="webp"
       :src="mainImage"
       alt="NikeCourt Zoom Vapor Cage 4 Rafa"
-      format="webp"
+      class="product-card__image"
     />
 
     <div class="product-card__details">
@@ -20,10 +21,11 @@
           @mouseover="changeMainImage(image)"
         >
           <NuxtImg
-            class="product-card__additional-image"
+            provider="cloudinary"
+            format="webp"
             :src="image"
             :alt="'Image ' + (index + 1)"
-            format="webp"
+            class="product-card__additional-image"
           />
         </div>
 

@@ -35,10 +35,10 @@
             provider="cloudinary"
             format="webp"
             :src="shoe.img"
+            alt="Shoe Image"
             width="343"
             height="457"
             class="classics__image"
-            alt="Shoe Image"
           />
         </div>
       </div>

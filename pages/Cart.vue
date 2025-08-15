@@ -13,10 +13,11 @@
           <div class="cart__bag-item-content">
             <div>
               <NuxtImg
+                provider="cloudinary"
+                format="webp"
                 class="cart__bag-item-image"
                 :src="item.mainImage"
                 alt=""
-                format="webp"
               />
               <div class="cart__bag-item-actions">
                 <div class="cart__bag-item-actions-quantity">

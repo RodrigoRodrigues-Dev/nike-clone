@@ -26,9 +26,10 @@
     </div>
     <div class="popupItem__infos">
       <NuxtImg
-        class="popupItem__image"
-        :src="firstItem.mainImage"
+        provider="cloudinary"
         format="webp"
+        :src="firstItem.mainImage"
+        class="popupItem__image"
       />
       <div class="popupItem__infos-content">
         <span>{{ firstItem.name }}</span>

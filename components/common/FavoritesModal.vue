@@ -9,10 +9,11 @@
       />
       <div class="favorites-modal__mobile-container">
         <NuxtImg
-          class="favorites-modal__image"
+          provider="cloudinary"
+          format="webp"
           :src="favoriteStore.selectSizeItem.mainImage"
           alt="Favorite item image"
-          format="webp"
+          class="favorites-modal__image"
         />
         <div class="favorites-modal__info-text-mobile">
           <p class="favorites-modal__info-mobile-subtitle">
