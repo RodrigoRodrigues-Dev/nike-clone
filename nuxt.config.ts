@@ -20,6 +20,22 @@ export default defineNuxtConfig({
       title: 'Nike Clone',
       meta: [
         { name: 'description', content: 'Website created as a personal project, intended to be a clone of the Nike website.' }
+      ],
+      link: [
+        {
+          rel: 'preload',
+          href: '/fonts/FuturaNdForNike/futura-nd-for-nike-365-cn-xbd.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: 'anonymous'
+        },
+        {
+          rel: 'preload',
+          href: '/fonts/HelveticaNowText/HelveticaNowText-Regular.woff2',
+          as: 'font',
+          type: 'font/woff2',
+          crossorigin: 'anonymous'
+        }
       ]
     }
   },
