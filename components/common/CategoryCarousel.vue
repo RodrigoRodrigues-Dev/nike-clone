@@ -46,14 +46,14 @@ import { useAutoSlide } from '@/composables/useAutoSlide';
 const slides = ref([
   {
     image:
-      'v1755016414/Nike%20Clone/Home/Category%20Carousel/icon_release_shoes_ucfyne.png',
+      'v1755016414/Nike%20Clone/Home/Category%20Carousel/icon_release_shoes_ucfyne_ehc03j.webp',
     title: 'RUNNING SHOES',
     description: 'Find your ideal sneaker.',
     alt: 'Running Shoes'
   },
   {
     image:
-      'v1755016414/Nike%20Clone/Home/Category%20Carousel/gift_card_c1o4c1.png',
+      'v1755016414/Nike%20Clone/Home/Category%20Carousel/gift_card_c1o4c1_s5mle3.webp',
     title: 'GIFT CARD',
     description: 'for last minute gifts.',
     alt: 'Gift Card'

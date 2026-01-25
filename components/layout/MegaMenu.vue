@@ -5,7 +5,7 @@
         provider="cloudinary"
         format="webp"
         alt="Nike logo"
-        src="v1755015974/Nike%20Clone/assets/nike-logo_exj6np.png"
+        src="v1755015974/Nike%20Clone/assets/nike-logo_exj6np_v3q0gs.webp"
         class="mega-menu__logo"
       />
       <ul class="mega-menu__nav-links">

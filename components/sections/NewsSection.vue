@@ -10,7 +10,7 @@
       <NuxtImg
         provider="cloudinary"
         format="webp"
-        src="v1755008443/Nike%20Clone/Home/sitio-web-oficial-de-nike_o5exk0.avif"
+        src="v1755008443/Nike%20Clone/Home/sitio-web-oficial-de-nike_o5exk0_oe5jvu.webp"
         alt="Banner Image"
         class="banner-image"
       />

@@ -6,7 +6,7 @@
         provider="cloudinary"
         format="webp"
         alt="Download do App Desktop"
-        src="v1755006974/Nike Clone/Home/app_download_tout_desk_y7h7pr.png"
+        src="v1755006974/Nike Clone/Home/app_download_tout_desk_y7h7pr_fatspu.webp"
         width="935"
         height="156"
         class="banner-desktop"
@@ -16,7 +16,7 @@
         provider="cloudinary"
         format="webp"
         alt="Download do App Mobile"
-        src="v1755007538/Nike Clone/Home/app_download_tout_mob_k7po3p.png"
+        src="v1755007538/Nike Clone/Home/app_download_tout_mob_k7po3p_jycgko.webp"
         class="banner-mobile"
       />
     </div>

@@ -22,7 +22,7 @@
         provider="cloudinary"
         format="webp"
         alt="Nike release image"
-        src="v1754946307/Nike%20Clone/Home/WLP_P1_img_DT-min_v8muv6.jpg"
+        src="v1754946307/Nike%20Clone/Home/WLP_P1_img_DT-min_v8muv6_c6fdxl.webp"
         class="banner-desktop"
       />
       <!-- Image Mobile -->
@@ -30,7 +30,7 @@
         provider="cloudinary"
         format="webp"
         alt="Nike release image"
-        src="v1754946774/Nike%20Clone/Home/WLP_P1_img_MB-min_eubnri.jpg"
+        src="v1754946774/Nike%20Clone/Home/WLP_P1_img_MB-min_eubnri_mqrdqq.webp"
         class="banner-mobile"
       />
     </div>

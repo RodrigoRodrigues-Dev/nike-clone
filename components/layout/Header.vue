@@ -7,7 +7,7 @@
           provider="cloudinary"
           format="webp"
           alt="Logo da Nike"
-          src="v1755015974/Nike%20Clone/assets/nike-logo_exj6np.png"
+          src="v1755015974/Nike%20Clone/assets/nike-logo_exj6np_v3q0gs.webp"
           class="header__logo"
         />
       </RouterLink>
