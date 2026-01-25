@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Futura ND for Nike 365';
-    src: url('/fonts/FuturaNdForNike/futura-nd-for-nike-365-cn-xbd.ttf') format('truetype');
+    src: url('/fonts/FuturaNdForNike/futura-nd-for-nike-365-cn-xbd.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -8,9 +8,7 @@
 
 @font-face {
     font-family: 'Helvetica Now Text Regular';
-    src: url('/fonts/HelveticaNowText/HelveticaNowText-RegIta.woff2') format('woff2'),
-         url('/fonts/HelveticaNowText/HelveticaNowText-RegIta.woff') format('woff'),
-         url('/fonts/HelveticaNowText/HelveticaNowText-RegIta.ttf') format('truetype');
+    src: url('/fonts/HelveticaNowText/HelveticaNowText-RegIta.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -18,9 +16,7 @@
 
 @font-face {
     font-family: 'Helvetica Now Text Medium';
-    src: url('/fonts/HelveticaNowText/HelveticaNowText-Medium.woff2') format('woff2'),
-         url('/fonts/HelveticaNowText/HelveticaNowText-Medium.woff') format('woff'),
-         url('/fonts/HelveticaNowText/HelveticaNowText-Medium.ttf') format('truetype');
+    src: url('/fonts/HelveticaNowText/HelveticaNowText-Medium.woff2') format('woff2');
     font-weight: medium;
     font-style: normal;
     font-display: swap;
@@ -29,9 +25,7 @@
 
 @font-face {
     font-family: 'Helvetica Now Text Black';
-    src: url('/fonts/HelveticaNowText/HelveticaNowText-Black.woff2') format('woff2'),
-         url('/fonts/HelveticaNowText/HelveticaNowText-Black.woff') format('woff'),
-         url('/fonts/HelveticaNowText/HelveticaNowText-Black.ttf') format('truetype');
+    src: url('/fonts/HelveticaNowText/HelveticaNowText-Black.woff2') format('woff2');
     font-weight: 900;
     font-style: normal;
     font-display: swap;
