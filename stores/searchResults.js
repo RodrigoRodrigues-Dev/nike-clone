@@ -11,34 +11,37 @@ export const useSearchResults = defineStore('searchResults', {
   actions: {
     toggleSearchResults() {
       this.showSearchResults = !this.showSearchResults;
-
       document.body.style.overflow = this.showSearchResults ? 'hidden' : '';
-
-      if (this.showSearchResults) {
-        window.scrollTo({
-          top: 0
-        });
-      }
-
+      if (this.showSearchResults) window.scrollTo({ top: 0 });
       this.valueInput = '';
+      this.debouncedValueInput = '';
     },
+
     setValueInput(value) {
       this.valueInput = value;
-      debounce(() => {
-        this.debouncedValueInput = value;
-      }, 300)();
+
+      if (!this._debouncedSet) {
+        this._debouncedSet = debounce((val) => {
+          this.debouncedValueInput = val;
+        }, 300);
+      }
+
+      this._debouncedSet(value);
     }
   },
+
   getters: {
     resultSearch(state) {
-      if (state.debouncedValueInput && state.debouncedValueInput.trim()) {
-        return state.products.filter((item) =>
-          item.productName
-            .toLowerCase()
-            .includes(state.debouncedValueInput.toLowerCase())
-        );
+      const q = (state.debouncedValueInput || '').trim().toLowerCase();
+      if (!q) {
+        return state.products;
       }
-      return [];
+
+      return state.products.filter((item) => {
+        const name = (item.productName || '').toLowerCase();
+        const desc = (item.productDescription || '').toLowerCase();
+        return name.includes(q) || desc.includes(q);
+      });
     }
   }
 });
