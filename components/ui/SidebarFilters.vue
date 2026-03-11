@@ -71,7 +71,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useFiltersStore } from '@/stores/filtersStore';
-import { categories, filterGroup, filterMappings } from '../data/filtersData';
+import { categories, filterGroup, filterMappings } from '../../data/filtersData';
 
 const filtersStore = useFiltersStore();
 const toggledGroups = ref({});
