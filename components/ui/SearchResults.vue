@@ -7,7 +7,7 @@
           <NuxtImg
             provider="cloudinary"
             format="webp"
-            src="https://nike-vibe-shop-images.vercel.app/nike-logo.png"
+            src="v1755015974/Nike%20Clone/assets/nike-logo_exj6np_v3q0gs.webp"
             alt="Logo da Nike"
             class="search-results__logo"
           />
@@ -81,10 +81,11 @@
               @click="(goToProduct(item), searchResults.toggleSearchResults())"
             >
               <NuxtImg
+                provider="cloudinary"
+                format="webp"
                 class="search-results__products-card__image"
                 :src="item.images.main"
                 alt=""
-                format="webp"
               />
               <p class="search-results__products-card__title">
                 {{ item.productName }}
@@ -163,7 +164,7 @@ const handleInput = (event) => {
   }
 
   &__logo {
-    width: 75px;
+    width: 4rem;
 
     @media (max-width: 960px) {
       display: none;
